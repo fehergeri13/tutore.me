@@ -19,6 +19,9 @@ Hogy a felhasználók tudjanak hirdetéseket feladni, illetve hogy tudjanak kapc
 ### Profil
 A felhasználóknak van egy saját profil oldaluk, ahol láthatják és módosíthatják a saját személyes adataikat, illetve láthatják a hirdetéseiket, és a mások által adott értékeléseket. Van lehetőség a hirdetések utólagos szerkesztésére, vagy lehet őket törölni is.
 
+### Üzenetek
+A felhasználóknak lehetősége van megnézni a bejövő üzeneteket, és ezekre válaszolni is. Erre azért van szükség, hogy ne legyenek nyilvánosak a személyes adatok, pl email cím.
+
 ### Hirdetések feladása
 A felhasználók bejelentkezés után tudnak feladni hirdetéseket. Az oldalon meg kell adni kötelező adatokat, pl cím, keres/kínál, tárgy, és utána a főoldalon megjelenik a hirdetése. A hirdetés csak egy bizonyos ideig látható (1 hónap) melyet meg lehet újítani, de ha nem újítják meg, akkor automatikusan törlődik.
 
@@ -28,3 +31,24 @@ A hirdetések kezelésére van egy admin felület, ahol lehetőség van egy kit�
 ### Reportolás
 Hogy a tartalmak megfelőek legyenek van lehetőség reportolásra, amivel lehet kifogásolni a nem megfelelő tartalmakat. Ezeket egy rövid indoklással megjelennek az adminnak, aki felülbírálhatja, és a megfelelő dolgot teheti.
 
+## Mockupok
+### Főoldal
+![Main page](https://github.com/fehergeri13/tutore.me/blob/master/Main%20page.png)
+
+### Bejelentkezés / regisztráció
+![Login Register page](https://github.com/fehergeri13/tutore.me/blob/master/Login_Registration.png)
+
+### Saját profil
+![Profile page](https://github.com/fehergeri13/tutore.me/blob/master/My%20profile%20page.png)
+
+### Más profilja
+![Profile page](https://github.com/fehergeri13/tutore.me/blob/master/Other's%20profile%20page.png)
+
+### Üzenetek
+![Messages page](https://github.com/fehergeri13/tutore.me/blob/master/Messages.png)
+
+### Hirdetések feladása
+![Login Register page](https://github.com/fehergeri13/tutore.me/blob/master/New%20ad.png)
+
+### Admin felület
+![Admin page](https://github.com/fehergeri13/tutore.me/blob/master/Admin_%20user%20search.png)
