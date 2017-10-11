@@ -33,25 +33,25 @@ Hogy a tartalmak megfelőek legyenek van lehetőség reportolásra, amivel lehet
 
 ## Mockupok
 ### Főoldal
-![Main page](https://github.com/fehergeri13/tutore.me/blob/master/Main%20page.png)
+![Main page](https://github.com/fehergeri13/tutore.me/raw/master/Main%20page.png)
 
 ### Bejelentkezés / regisztráció
-![Login Register page](https://github.com/fehergeri13/tutore.me/blob/master/Login_Registration.png)
+![Login Register page](https://github.com/fehergeri13/tutore.me/raw/master/Login_Registration.png)
 
 ### Saját profil
-![Profile page](https://github.com/fehergeri13/tutore.me/blob/master/My%20profile%20page.png)
+![Profile page](https://github.com/fehergeri13/tutore.me/raw/master/My%20profile%20page.png)
 
 ### Más profilja
-![Profile page](https://github.com/fehergeri13/tutore.me/blob/master/Other's%20profile%20page.png)
+![Profile page](https://github.com/fehergeri13/tutore.me/raw/master/Other's%20profile%20page.png)
 
 ### Üzenetek
-![Messages page](https://github.com/fehergeri13/tutore.me/blob/master/Messages.png)
+![Messages page](https://github.com/fehergeri13/tutore.me/raw/master/Messages.png)
 
 ### Hirdetések feladása
-![Login Register page](https://github.com/fehergeri13/tutore.me/blob/master/New%20ad.png)
+![Login Register page](https://github.com/fehergeri13/tutore.me/raw/master/New%20ad.png)
 
 ### Admin felület
-![Admin page](https://github.com/fehergeri13/tutore.me/blob/master/Admin_%20user%20search.png)
+![Admin page](https://github.com/fehergeri13/tutore.me/raw/master/Admin_%20user%20search.png)
 
 ## Minőségi jellemzők
 
