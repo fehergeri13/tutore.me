@@ -52,3 +52,25 @@ Hogy a tartalmak megfelőek legyenek van lehetőség reportolásra, amivel lehet
 
 ### Admin felület
 ![Admin page](https://github.com/fehergeri13/tutore.me/blob/master/Admin_%20user%20search.png)
+
+## Minőségi jellemzők
+
+### Biztonság (security)
+Fontos a biztonság, erre az alábbi módon szeretnénk figyelni:
+ - A jelszavakat az adatbázisban csak titkosított formában tároljuk, nem tárolunk plaintext jelszót
+ - A személyes adatokat nem adjuk ki, azt csak a felhasználó tudja elküldeni üzenetben, amennyiben szeretné. Harmadik felek csak a felhasználó nevet láthatják.
+ 
+### Biztonság (safety)
+A felhasználók biztonsága is fontos, ebben főleg a visszaélések megakadályozása az elsődleges. Emiatt a rendszer támogat egy reportolási lehetőséget, ami jelzi az admin felé, hogy az adott dolog kifogásolható, ezután az admin felülvizsgálja, és a szükséges lépéseket megteszi.
+
+### Design
+Fontosnak tartjuk, hogy a rendszer kinézete és használata ergonómikus legyen, és modern legyen, illetve támogassa mind az asztali számítógépeket, mind a mobil készülékeket. A weboldal akadálymentesített legyen vakok és gyengénlátók szempontjából.
+
+## Platform megjelölése
+A rendszert a klasszikus három rétegű architektúrában szeretnénk megvalósítani, frontend, backend, database rétegezéssel.
+
+A frontendet React Javascript framework segítségével szeretnénk elkészíteni.
+A backendet Nodejs alapon készítenénk el.
+Az adatbázis MongoDB lenne.
+
+A frontend és a backend RestAPI segítségével fog tudni kommunikálni egymással.
