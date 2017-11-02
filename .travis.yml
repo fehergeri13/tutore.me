@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "node"
+  - "8"
+
+before_install:
+    # setting the path for phantom.js 2.0.0
+install:
+    - cd backend && npm install
+    - cd frontend && npm install
+script:
+    - cd backend && npm test
+    - cd frontend && npm test
