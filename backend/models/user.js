@@ -20,6 +20,10 @@ const UserSchema = new Schema({
     lastName: {
         type: Schema.Types.String
     },
+    isAdmin: {
+        type: Schema.Types.Boolean,
+        default: false
+    }
     registeredAt: {
         type: Schema.Types.Date,
         required: true
