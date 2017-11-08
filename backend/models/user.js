@@ -23,7 +23,7 @@ const UserSchema = new Schema({
     isAdmin: {
         type: Schema.Types.Boolean,
         default: false
-    }
+    },
     registeredAt: {
         type: Schema.Types.Date,
         required: true
@@ -34,6 +34,10 @@ const UserSchema = new Schema({
     posts: [{
         type: Schema.Types.ObjectId,
         ref: 'Post'
+    }],
+    trustedUsers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }]
 });
 
