@@ -31,7 +31,10 @@ const config = {
         new HtmlWebpackPlugin({
             template: './src/index.html'
         })
-    ]
+    ],
+    resolve: {
+        extensions: ['.js', '.jsx']
+    }
 };
 
 module.exports = config;
