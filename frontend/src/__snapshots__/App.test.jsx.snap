@@ -1,7 +1,178 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders correctly 1`] = `
-<div>
-  hello world
+<div
+  className="app"
+>
+  <div
+    className="header"
+  >
+    <h1>
+      tutore.me
+    </h1>
+    <div
+      className="nav"
+    >
+      <a
+        href="#"
+      >
+        Hirdetések
+      </a>
+      <a
+        href="#"
+      >
+        Új hirdetés
+      </a>
+    </div>
+    <div
+      className="user"
+    >
+      <a
+        href="#"
+      >
+        Üzenetek
+      </a>
+      <a
+        href="#"
+      >
+        Profilom
+      </a>
+      <a
+        href="#"
+      >
+        Kilépés
+      </a>
+    </div>
+  </div>
+  <div
+    className="search"
+  >
+    <input
+      id="search-text"
+      placeholder="keresés"
+      type="text"
+    />
+    <fieldset>
+      <label>
+        Keres
+        <input
+          name="contact"
+          type="radio"
+          value="keres"
+        />
+      </label>
+      <label>
+        Kínál
+        <input
+          name="contact"
+          type="radio"
+          value="keres"
+        />
+      </label>
+    </fieldset>
+    <fieldset>
+      <legend>
+        Tantárgy
+      </legend>
+      <label>
+        informatika
+        <input
+          name="contact"
+          type="checkbox"
+          value="keres"
+        />
+      </label>
+      <label>
+        Matematika
+        <input
+          name="contact"
+          type="checkbox"
+          value="keres"
+        />
+      </label>
+      <label>
+        Fizika
+        <input
+          name="contact"
+          type="checkbox"
+          value="keres"
+        />
+      </label>
+      <label>
+        Kémia
+        <input
+          name="contact"
+          type="checkbox"
+          value="keres"
+        />
+      </label>
+    </fieldset>
+  </div>
+  <div
+    className="content"
+  >
+    <ul>
+      <li>
+        <h2>
+          <a
+            href="#"
+          >
+            Matematika korrepetálás
+          </a>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
+        </p>
+      </li>
+      <li>
+        <h2>
+          <a
+            href="#"
+          >
+            Matematika korrepetálás
+          </a>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
+        </p>
+      </li>
+      <li>
+        <h2>
+          <a
+            href="#"
+          >
+            Matematika korrepetálás
+          </a>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
+        </p>
+      </li>
+      <li>
+        <h2>
+          <a
+            href="#"
+          >
+            Matematika korrepetálás
+          </a>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
+        </p>
+      </li>
+      <li>
+        <h2>
+          <a
+            href="#"
+          >
+            Matematika korrepetálás
+          </a>
+        </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
+        </p>
+      </li>
+    </ul>
+  </div>
 </div>
 `;

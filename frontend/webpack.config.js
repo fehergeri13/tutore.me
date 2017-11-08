@@ -12,13 +12,14 @@ const config = {
         filename: '[name].js',
     },
     devServer: {
-         contentBase: './dist'
+        contentBase: './dist',
+        historyApiFallback: true
     },
     module: {
         rules: [
             {
                 test: /\.less$/,
-                use: [{loader: "style-loader"}, {loader: "css-loader" }, {loader: "less-loader"}]
+                use: [{loader: "style-loader"}, {loader: "css-loader"}, {loader: "less-loader"}]
             },
             {
                 test: /\.js|\.jsx$/,
