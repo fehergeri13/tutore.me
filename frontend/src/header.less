@@ -7,26 +7,27 @@ div.header {
   height: 50px;
   border-bottom: 1px solid #000;
 
+
+
+  ul.links {
+    display: flex;
+    flex-direction: row;
+
+    li:not(:first-child):before {
+      content: "|";
+      margin: 0 5px;
+    }
+  }
+
   h1 {
     grid-area: title;
   }
 
   div.nav {
     grid-area: nav;
-
-    a + a:before {
-      content: "|";
-      padding: 0 10px;
-    }
   }
 
   div.user {
     grid-area: user;
-
-    a + a:before {
-      content: "|";
-      padding: 0 10px;
-      display: inline-block;
-    }
   }
 }

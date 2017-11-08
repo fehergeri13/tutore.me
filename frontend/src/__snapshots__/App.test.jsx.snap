@@ -13,35 +13,53 @@ exports[`App renders correctly 1`] = `
     <div
       className="nav"
     >
-      <a
-        href="#"
+      <ul
+        className="links"
       >
-        Hirdetések
-      </a>
-      <a
-        href="#"
-      >
-        Új hirdetés
-      </a>
+        <li>
+          <a
+            href="#"
+          >
+            Hirdetések
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+          >
+            Új hirdetés
+          </a>
+        </li>
+      </ul>
     </div>
     <div
       className="user"
     >
-      <a
-        href="#"
+      <ul
+        className="links"
       >
-        Üzenetek
-      </a>
-      <a
-        href="#"
-      >
-        Profilom
-      </a>
-      <a
-        href="#"
-      >
-        Kilépés
-      </a>
+        <li>
+          <a
+            href="#"
+          >
+            Üzenetek
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+          >
+            Profilom
+          </a>
+        </li>
+        <li>
+          <a
+            href="#"
+          >
+            Kilépés
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
   <div

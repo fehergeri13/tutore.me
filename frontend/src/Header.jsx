@@ -9,14 +9,18 @@ export default class App extends React.Component {
             <h1>tutore.me</h1>
 
             <div className="nav">
-                <a href="#">Hirdetések</a>
-                <a href="#">Új hirdetés</a>
+                <ul className="links">
+                    <li><a href="#">Hirdetések</a></li>
+                    <li><a href="#">Új hirdetés</a></li>
+                </ul>
             </div>
 
             <div className="user">
-                <a href="#">Üzenetek</a>
-                <a href="#">Profilom</a>
-                <a href="#">Kilépés</a>
+                <ul className="links">
+                    <li><a href="#">Üzenetek</a></li>
+                    <li><a href="#">Profilom</a></li>
+                    <li><a href="#">Kilépés</a></li>
+                </ul>
             </div>
         </div>;
     }
