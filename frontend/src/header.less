@@ -1,0 +1,32 @@
+div.header {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-areas: "title nav gap user";
+  align-items: baseline;
+  grid-area: header;
+  height: 50px;
+  border-bottom: 1px solid #000;
+
+  h1 {
+    grid-area: title;
+  }
+
+  div.nav {
+    grid-area: nav;
+
+    a + a:before {
+      content: "|";
+      padding: 0 10px;
+    }
+  }
+
+  div.user {
+    grid-area: user;
+
+    a + a:before {
+      content: "|";
+      padding: 0 10px;
+      display: inline-block;
+    }
+  }
+}

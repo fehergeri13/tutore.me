@@ -54,20 +54,20 @@ exports[`App renders correctly 1`] = `
     />
     <fieldset>
       <label>
-        Keres
         <input
           name="contact"
           type="radio"
           value="keres"
         />
+        Keres
       </label>
       <label>
-        Kínál
         <input
           name="contact"
           type="radio"
           value="keres"
         />
+        Kínál
       </label>
     </fieldset>
     <fieldset>
@@ -75,36 +75,36 @@ exports[`App renders correctly 1`] = `
         Tantárgy
       </legend>
       <label>
-        informatika
         <input
           name="contact"
           type="checkbox"
           value="keres"
         />
+        Informatika
       </label>
       <label>
+        <input
+          name="contact"
+          type="checkbox"
+          value="keres"
+        />
         Matematika
+      </label>
+      <label>
         <input
           name="contact"
           type="checkbox"
           value="keres"
         />
-      </label>
-      <label>
         Fizika
-        <input
-          name="contact"
-          type="checkbox"
-          value="keres"
-        />
       </label>
       <label>
-        Kémia
         <input
           name="contact"
           type="checkbox"
           value="keres"
         />
+        Kémia
       </label>
     </fieldset>
   </div>
@@ -123,6 +123,11 @@ exports[`App renders correctly 1`] = `
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
         </p>
+        <div
+          className="time"
+        >
+          2017. 11. 08. 23:16
+        </div>
       </li>
       <li>
         <h2>
@@ -135,6 +140,11 @@ exports[`App renders correctly 1`] = `
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
         </p>
+        <div
+          className="time"
+        >
+          2017. 11. 08. 23:16
+        </div>
       </li>
       <li>
         <h2>
@@ -147,6 +157,11 @@ exports[`App renders correctly 1`] = `
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
         </p>
+        <div
+          className="time"
+        >
+          2017. 11. 08. 23:16
+        </div>
       </li>
       <li>
         <h2>
@@ -159,6 +174,11 @@ exports[`App renders correctly 1`] = `
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
         </p>
+        <div
+          className="time"
+        >
+          2017. 11. 08. 23:16
+        </div>
       </li>
       <li>
         <h2>
@@ -171,6 +191,11 @@ exports[`App renders correctly 1`] = `
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
         </p>
+        <div
+          className="time"
+        >
+          2017. 11. 08. 23:16
+        </div>
       </li>
     </ul>
   </div>

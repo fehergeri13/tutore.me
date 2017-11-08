@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User renders correctly 1`] = `
+<div
+  className="userpage"
+>
+  <div
+    className="header"
+  >
+    <h1>
+      tutore.me
+    </h1>
+    <div
+      className="nav"
+    >
+      <a
+        href="#"
+      >
+        Hirdetések
+      </a>
+      <a
+        href="#"
+      >
+        Új hirdetés
+      </a>
+    </div>
+    <div
+      className="user"
+    >
+      <a
+        href="#"
+      >
+        Üzenetek
+      </a>
+      <a
+        href="#"
+      >
+        Profilom
+      </a>
+      <a
+        href="#"
+      >
+        Kilépés
+      </a>
+    </div>
+  </div>
+  <div
+    className="left"
+  >
+    <img
+      alt=""
+      src=""
+    />
+    <div
+      className="data"
+    >
+      <div
+        className="name"
+      >
+        Név
+      </div>
+      <div
+        className="email"
+      >
+        Email
+      </div>
+      <div
+        className="address"
+      >
+        Lakhely
+      </div>
+    </div>
+    <div
+      className="feedbacks"
+    >
+      <div
+        className="feedback"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consectetur cupiditate dolores doloribus est expedita fuga ipsa ipsam iure, iusto labore neque, officia porro praesentium quas saepe sunt vitae, voluptatum.
+        </p>
+      </div>
+      <div
+        className="feedback"
+      >
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consectetur cupiditate dolores doloribus est expedita fuga ipsa ipsam iure, iusto labore neque, officia porro praesentium quas saepe sunt vitae, voluptatum.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="right"
+  />
+</div>
+`;

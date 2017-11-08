@@ -1,0 +1,67 @@
+div.loginpage {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: min-content auto 50px;
+  grid-template-areas:
+          "header header"
+          "login register"
+          "footer footer";
+
+  div.header {
+    grid-area: header;
+
+    h1 {
+      text-align: center;
+    }
+  }
+
+  div.login {
+    grid-area: login;
+    border-right: 1px solid #000;
+
+  }
+
+  div.register {
+    grid-area: register;
+
+    form {
+      label {
+        text-align: left;
+      }
+    }
+  }
+
+  div.login, div.register {
+    margin: 10px;
+    padding: 10px;
+
+    h2 {
+      margin: 0 0 20px 0;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      &> * {
+        margin: 5px;
+      }
+
+      input[type="text"], input[type="password"] {
+        padding: 5px;
+      }
+
+      label {
+        display: flex;
+        flex-direction: column;
+      }
+
+      button {
+        align-self: flex-end;
+      }
+    }
+  }
+}
