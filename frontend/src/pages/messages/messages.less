@@ -1,0 +1,77 @@
+div.messages-page {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: min-content auto 50px;
+  grid-template-areas:
+          "header header"
+          "left right"
+          "footer footer";
+
+  div.left {
+    grid-area: left;
+  }
+
+  div.right {
+    grid-area: right;
+  }
+
+  div.left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid #000;
+
+    ul.conservations li {
+      display: grid;
+      grid-template-columns: min-content auto;
+      grid-template-rows: min-content min-content;
+      grid-template-areas:
+              "image name"
+              "image last-message";
+
+      margin: 16px;
+
+      img {
+        grid-area: image;
+        width: 48px;
+        height: 48px;
+        border: 1px solid #000;
+        display: block;
+        margin-right: 8px;
+      }
+
+      div.name {
+        grid-area: name;
+      }
+
+      div.last-message {
+        grid-area: last-message;
+        font-size: 1.0rem;
+      }
+    }
+  }
+
+  ul.messages {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      border: 1px solid #000;
+      border-radius: 8px;
+      padding: 8px;
+      max-width: 80%;
+      margin: 8px 8px 0 8px;
+    }
+
+    li.sent {
+      align-self: flex-end;
+      background: #ebebeb;
+    }
+
+    li.received {
+      align-self: flex-start;
+    }
+  }
+}

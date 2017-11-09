@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import "./user.less"
-import Header from "./Header";
+import Header from "../../components/header/Header";
 
 export default class App extends React.Component {
     render() {

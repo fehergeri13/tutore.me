@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import "./index.less"
-import App from './App';
-import Login from "./Login";
-import User from "./User";
+import App from './pages/app/App';
+import Login from "./pages/login/Login";
+import User from "./pages/user/User";
+import Messages from "./pages/messages/Messages";
 
-ReactDOM.render(<User/>, document.getElementById('root'));
+ReactDOM.render(<Messages/>, document.getElementById('root'));
