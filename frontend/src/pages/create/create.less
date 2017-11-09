@@ -1,0 +1,92 @@
+div.create-page {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: min-content auto 50px;
+  grid-template-areas: "header" "creator" "footer";
+
+  div.creator {
+    grid-area: creator;
+
+    h2 {
+      margin: 16px 8px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: min-content auto min-content;
+      grid-template-areas:
+              "title title title"
+              "text text text"
+              "first second third";
+
+      label.title {
+        grid-area: title;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      label.text {
+        grid-area: text;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      fieldset.type {
+        grid-area: first;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      fieldset.subject {
+        grid-area: second;
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      div.buttons {
+        grid-area: third;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+
+      label {
+        margin: 8px 8px 0 8px;
+      }
+
+      div.buttons {
+        margin: 8px 8px 0 8px;
+      }
+
+      input[type="text"] {
+        padding: 8px;
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 8px;
+        margin-right: 8px;
+      }
+
+      textarea {
+        height: 400px;
+        padding: 8px;
+      }
+
+      fieldset {
+        border: 0;
+        margin: 8px 8px 0 8px;
+      }
+    }
+  }
+
+}
