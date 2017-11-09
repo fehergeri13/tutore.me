@@ -5,26 +5,16 @@
 const chai = require('chai');
 const should = chai.should();
 
-const argon = require('argon2');
-
 const mongoose = require('mongoose');
 const Mockgoose = require('mockgoose').Mockgoose;
 const mockgoose = new Mockgoose(mongoose);
 
-const dbConfig = require('../../config/dbconfig');
+const argon = require('argon2');
 
 const User = require('../../models/user');
 const user = require('../../middlewares/user');
 
 let testUser = null;
-
-before(done => {
-    mockgoose.prepareStorage().then(() => {
-        mongoose.connect(dbConfig.testUrl, (err) => {
-            done(err);
-        })
-    });
-})
 
 describe('User injection middleware', () => {
     beforeEach((done) => {

@@ -1,5 +1,5 @@
 /**
- * Controller for user handling like login, registration and logout.
+ * Controller for user handling.
  */
 
 const express = require('express');
@@ -7,6 +7,100 @@ const router = express.Router();
 
 const argon = require('argon2');
 const User = require('../models/user');
+
+const userMiddleware = require('../middlewares/user');
+const authMiddleware = require('../middlewares/auth');
+
+/**
+ * /user/list: GET
+ * response: {
+ *  users: [{
+ *   id: string
+ *   username: string
+ *   email: string
+ *   registeredAt: string
+ *   lastLoginAt: string, optional
+ *  }]
+ * }
+ * 
+ * Lists the registered users (admin function).
+ */
+router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.session.isAdmin) {
+        res.status(401).end();
+    } else {
+        User.find({}, (err, users) => {
+            if (err) {
+                res.status(400).end();
+            } else {
+                const result = {
+                    users: []
+                };
+    
+                users.forEach((user) => {
+                    result.users.push({
+                        id: user._id,
+                        username: user.username,
+                        email: user.email,
+                        registeredAt: user.registeredAt,
+                        lastLoginAt: user.lastLoginAt
+                    });
+                });
+
+                res.send(result);
+            }
+        });
+    }
+});
+
+/**
+ * /user/:id: GET
+ * response: {
+ *  username: string
+ *  registeredAt: date
+ *  email: string, optional
+ *  lastName: string, optional
+ *  firstName: string, optional
+ * }
+ * 
+ * Returns the user data for the given id.
+ */
+router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.params.id) {
+        res.status(400).end();
+    }
+
+    User.findById(req.params.id, (err, user) => {
+        if (err || !user) {
+            res.status(400).end();
+        } else {
+            const response = {
+                username: user.username,
+                registeredAt: user.registeredAt
+            };
+
+            if (user.trustedUsers && user.trustedUsers.indexOf(req.user._id) >= 0) {
+                response.email = user.email;
+                response.firstName = user.firstName;
+                response.lastName = user.lastName;
+            }
+
+            res.send(response);
+        }
+    });
+});
+
+/**
+ * /user/logout: POST
+ * 
+ * Logs out the current user.
+ */
+router.post('/logout', userMiddleware, authMiddleware, (req, res, next) => {
+    delete req.session;
+    delete req.session.user;
+
+    res.status(200).end();
+});
 
 /**
  * /user/login: POST
@@ -20,24 +114,30 @@ const User = require('../models/user');
  */
 router.post('/login', (req, res, next) => {
     if (!req.body.username || !req.body.password) {
-        req.status(400).end();
+        res.status(400).end();
     } else {
         User.findOne({ username: req.body.username }, (err, user) => {
             if (user) {
                 argon.verify(user.password, req.body.password)
-                    .then(() => {
-                        req.session.user = user._id;
-                        user.lastLoginAt = Date.now();
-                        user.save((err) => {
-                            if (!err) {
-                                res.status(200).end();
-                            } else {
-                                res.status(400).end();
+                    .then((success) => {
+                        if (!success) {
+                            res.status(401).end();
+                        } else {
+                            req.session = {};
+                            req.session.user = user._id;
+                            if (user.isAdmin) {
+                                req.session.isAdmin = true;
                             }
-                        })
-                    })
-                    .catch(() => {
-                        res.status(401).end();
+    
+                            user.lastLoginAt = Date.now();
+                            user.save((err) => {
+                                if (!err) {
+                                    res.status(200).end();
+                                } else {
+                                    res.status(400).end();
+                                }
+                            });
+                        }
                     });
             } else {
                 res.status(401).end();
@@ -52,19 +152,18 @@ router.post('/login', (req, res, next) => {
  *  username: string, required
  *  password: string, required
  *  email: string, required
- *  firstname: string
- *  lastname: string
+ *  firstName: string
+ *  lastName: string
  * }
  * 
- * Registers the user with the given data. Returns 201 in case of success,
- * 400 otherwise.
+ * Registers the user with the given data.
  */
 router.post('/register', (req, res, next) => {
     if (!req.body.username || !req.body.password || !req.body.email) {
         res.status(400).end();
     } else {
         const existingUser = User.findOne({ username: req.body.username }, (err, user) => {
-            if (user) {
+            if (user || err) {
                 res.status(400).end();
             } else {
                 argon.hash(req.body.password).then(passwordHash => {
@@ -81,7 +180,7 @@ router.post('/register', (req, res, next) => {
                         if (err) {
                             res.status(400).end();
                         } else {
-                            res.status(201).end();
+                            res.status(200).end();
                         }
                     });
                 });
@@ -91,18 +190,107 @@ router.post('/register', (req, res, next) => {
 });
 
 /**
- * /user/logout: GET
+ * /user/edit: POST
+ * request: {
+ *  email: string
+ *  firstName: string
+ *  lastName: string
+ * }
  * 
- * Logs out the current user.
+ * Updates the non-null user data from the request.
  */
-router.get('/logout', (req, res, next) => {
-    if (req.session && req.session.user) {
-        delete req.session;
-        delete req.session.user;
+router.post('/edit', userMiddleware, authMiddleware, (req, res, next) => {
+    if (req.body.email) {
+        req.user.email = req.body.email;
+    }
+    if (req.body.firstName) {
+        req.user.firstName = req.body.firstName;
+    }
+    if (req.body.lastName) {
+        req.user.lastName = req.body.lastName;
+    }
 
-        res.status(200).end();
-    } else {
+    req.user.save((err) => {
+        if (err) {
+            res.status(400).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+});
+
+/**
+ * /user/changePassword
+ * request: {
+ *  currentPassword: string, required
+ *  newPassword: string, required
+ * }
+ * 
+ * Changes the current user's password.
+ */
+router.post('/changePassword', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.body.currentPassword || !req.body.newPassword || 
+        req.body.currentPassword == req.body.newPassword) {
         res.status(400).end();
+    } else {
+        User.findById(req.user._id, (err, user) => {
+            if (!user || err) {
+                res.status(400).end();
+            } else {
+                argon.verify(user.password, req.body.currentPassword)
+                    .then((success) => {
+                        if (!success) {
+                            res.status(400).end();
+                        } else {
+                            argon.hash(req.body.newPassword)
+                                .then((passwordHash) => {
+                                    user.password = passwordHash;
+                                    user.save((err) => {
+                                        if (err) {
+                                            res.status(400).end();
+                                        } else {
+                                            res.status(200).end();
+                                        }
+                                    });
+                                });
+                        }
+                    })
+            }
+        });
+    }
+});
+
+/**
+ * /user/addTrustedUser: POST
+ * request: {
+ *  userId: string, required
+ * }
+ * 
+ * Adds the user in the request to the current
+ * user's trusted users.
+ */
+router.post('/addTrustedUser', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.body.userId) {
+        res.status(400).end();
+    } else {
+        User.findById(req.body.userId, (err, user) => {
+            if (!user || err) {
+                res.status(400).end();
+            } else {
+                if (req.user.trustedUsers.indexOf(user._id) < 0) {
+                    req.user.trustedUsers.push(user._id)
+                    req.user.save((err) => {
+                        if (err) {
+                            res.status(400).end();
+                        } else {
+                            res.status(200).end();
+                        }
+                    })
+                } else {
+                    res.status(400).end();
+                }
+            }
+        });
     }
 });
 
