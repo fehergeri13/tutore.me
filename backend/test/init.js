@@ -18,5 +18,4 @@ before(done => {
 
 after(() => {
     mongoose.connection.close();
-    process.exit();
 });
