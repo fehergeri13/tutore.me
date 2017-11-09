@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-import "./login.less"
+import "./user.less"
 import Header from "./Header";
 
 export default class App extends React.Component {
@@ -9,27 +9,85 @@ export default class App extends React.Component {
         return <div className="userpage">
             <Header/>
 
-            <div className="left">
+            <div className="profile">
                 <img src="" alt=""/>
 
                 <div className="data">
-                    <div className="name">Név</div>
-                    <div className="email">Email</div>
-                    <div className="address">Lakhely</div>
+                    <div className="name">Név <span>Gipsz Jakab</span><button>🖉</button></div>
+                    <div className="email">Email <span>gipsz.jakab@gmail.com</span><button>🖉</button></div>
+                    <div className="address">Lakhely <span>1112 Budapest, Tudósok körútja 1.</span><button>🖉</button></div>
                 </div>
 
                 <div className="feedbacks">
-                    <div className="feedback">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consectetur cupiditate dolores doloribus est expedita fuga ipsa ipsam iure, iusto labore neque, officia porro praesentium quas saepe sunt vitae, voluptatum.</p>
-                    </div>
-                    <div className="feedback">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At consectetur cupiditate dolores doloribus est expedita fuga ipsa ipsam iure, iusto labore neque, officia porro praesentium quas saepe sunt vitae, voluptatum.</p>
-                    </div>
+                    <h2>Rólam írták</h2>
+
+                    <ul>
+                        <li>
+                            <p>Nagyon király, 10/10</p>
+                            <div className="stars">★★★★★</div>
+                        </li>
+                        <li>
+                            <p>Egész jó!</p>
+                            <div className="stars">★★★★☆</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
 
-            <div className="right">
+            <div className="userfeed">
+                <h2>Hirdetéseim</h2>
+                <ul>
+                    <li>
+                        <div className="ad">
+                            <h2><a href="#">Matematika korrepetálás</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
+                            <div className="time">2017. 11. 08. 23:16</div>
+                        </div>
+                        <div className="actions">
+                            <button>Szerkesztés</button>
+                            <button>Törlés</button>
+                            <button>Meghosszabbítás</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="ad">
+                            <h2><a href="#">Matematika korrepetálás</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
+                            <div className="time">2017. 11. 08. 23:16</div>
+                        </div>
+                        <div className="actions">
+                            <button>Szerkesztés</button>
+                            <button>Törlés</button>
+                            <button>Meghosszabbítás</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="ad">
+                            <h2><a href="#">Matematika korrepetálás</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
+                            <div className="time">2017. 11. 08. 23:16</div>
+                        </div>
+                        <div className="actions">
+                            <button>Szerkesztés</button>
+                            <button>Törlés</button>
+                            <button>Meghosszabbítás</button>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="ad">
+                            <h2><a href="#">Matematika korrepetálás</a></h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
+                            <div className="time">2017. 11. 08. 23:16</div>
+                        </div>
+                        <div className="actions">
+                            <button>Szerkesztés</button>
+                            <button>Törlés</button>
+                            <button>Meghosszabbítás</button>
+                        </div>
+                    </li>
 
+
+                </ul>
             </div>
         </div>;
     }
