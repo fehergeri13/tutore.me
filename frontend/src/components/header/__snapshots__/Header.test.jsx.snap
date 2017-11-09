@@ -15,14 +15,16 @@ exports[`Header renders correctly 1`] = `
     >
       <li>
         <a
-          href="#"
+          href="/"
+          onClick={[Function]}
         >
           Hirdetések
         </a>
       </li>
       <li>
         <a
-          href="#"
+          href="/create"
+          onClick={[Function]}
         >
           Új hirdetés
         </a>
@@ -37,21 +39,24 @@ exports[`Header renders correctly 1`] = `
     >
       <li>
         <a
-          href="#"
+          href="/messages"
+          onClick={[Function]}
         >
           Üzenetek
         </a>
       </li>
       <li>
         <a
-          href="#"
+          href="/user"
+          onClick={[Function]}
         >
           Profilom
         </a>
       </li>
       <li>
         <a
-          href="#"
+          href="/logout"
+          onClick={[Function]}
         >
           Kilépés
         </a>

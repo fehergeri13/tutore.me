@@ -5,64 +5,6 @@ exports[`User renders correctly 1`] = `
   className="messages-page"
 >
   <div
-    className="header"
-  >
-    <h1>
-      tutore.me
-    </h1>
-    <div
-      className="nav"
-    >
-      <ul
-        className="links"
-      >
-        <li>
-          <a
-            href="#"
-          >
-            Hirdetések
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-          >
-            Új hirdetés
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div
-      className="user"
-    >
-      <ul
-        className="links"
-      >
-        <li>
-          <a
-            href="#"
-          >
-            Üzenetek
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-          >
-            Profilom
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-          >
-            Kilépés
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div
     className="left"
   >
     <ul

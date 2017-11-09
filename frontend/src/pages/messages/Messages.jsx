@@ -5,8 +5,6 @@ import Header from "../../components/header/Header";
 export default class Messages extends React.Component {
     render() {
         return <div className="messages-page">
-            <Header/>
-
             <div className="left">
                 <ul className="conservations">
                     <li>

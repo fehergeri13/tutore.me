@@ -1,14 +1,9 @@
 import React from 'react';
+import "./home.less"
 
-
-import "./app.less"
-import Header from "../../components/header/Header";
-
-export default class App extends React.Component {
+export default class Home extends React.Component {
     render() {
-        return <div className="app">
-            <Header/>
-
+        return <div className="home-page">
             <div className="search">
                 <input type="text" id="search-text" placeholder="keresés"/>
 

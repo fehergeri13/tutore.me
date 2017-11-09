@@ -6,9 +6,7 @@ import Header from "../../components/header/Header";
 
 export default class App extends React.Component {
     render() {
-        return <div className="loginpage">
-            <Header/>
-
+        return <div className="login-page">
             <div className="login">
                 <h2>Bejelentkezés</h2>
 

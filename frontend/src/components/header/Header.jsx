@@ -2,6 +2,7 @@ import React from 'react';
 
 
 import "./header.less"
+import {Link} from "react-router-dom";
 
 export default class App extends React.Component {
     render() {
@@ -10,16 +11,16 @@ export default class App extends React.Component {
 
             <div className="nav">
                 <ul className="links">
-                    <li><a href="#">Hirdetések</a></li>
-                    <li><a href="#">Új hirdetés</a></li>
+                    <li><Link to="/">Hirdetések</Link></li>
+                    <li><Link to="/create">Új hirdetés</Link></li>
                 </ul>
             </div>
 
             <div className="user">
                 <ul className="links">
-                    <li><a href="#">Üzenetek</a></li>
-                    <li><a href="#">Profilom</a></li>
-                    <li><a href="#">Kilépés</a></li>
+                    <li><Link to="/messages">Üzenetek</Link></li>
+                    <li><Link to="/user">Profilom</Link></li>
+                    <li><Link to="/logout">Kilépés</Link></li>
                 </ul>
             </div>
         </div>;

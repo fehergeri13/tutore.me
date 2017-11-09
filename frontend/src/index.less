@@ -17,3 +17,23 @@ body {
 textarea {
   resize: none;
 }
+
+div.app {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: min-content auto min-content;
+  grid-template-areas:
+          "header"
+          "content"
+          "footer";
+
+  & > div.header {
+    grid-area: header;
+  }
+
+  & > div.content {
+    grid-area: content;
+  }
+}

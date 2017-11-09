@@ -5,9 +5,6 @@ import Header from "../../components/header/Header";
 export default class Create extends React.Component {
     render() {
         return <div className="create-page">
-            <Header/>
-
-
             <div className="creator">
                 <h2>Új hirdetés felvétele</h2>
 
