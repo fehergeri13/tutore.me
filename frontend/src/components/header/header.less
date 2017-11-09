@@ -1,33 +1,121 @@
+@small: ~"(max-width: 500px)";
+@medium: ~"(min-width: 501px) and (max-width: 1000px)";
+@large: ~"(min-width: 1001px)";
+
 div.header {
-  display: grid;
-  grid-template-columns: auto auto 1fr auto;
-  grid-template-areas: "title nav gap user";
+  display: flex;
+  position: relative;
+  min-height: 40px;
+
   align-items: baseline;
-  grid-area: header;
-  height: 50px;
   border-bottom: 1px solid #000;
 
+  @media @small {
+    flex-direction: column;
+  }
 
-
-  ul.links {
-    display: flex;
+  @media @medium, @large {
     flex-direction: row;
+  }
 
-    li:not(:first-child):before {
-      content: "|";
-      margin: 0 5px;
+  input[type="checkbox"] {
+    @media @small {
+      width: 0;
+      height: 0;
+
+      & + label {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        background: #ccc;
+        border: none;
+
+        i {
+          font-size: 36px;
+        }
+
+        i.menu {
+          display: block;
+        }
+
+        i.close {
+          display: none;
+        }
+      }
+
+      &:checked + label {
+        i.menu {
+          display: none;
+        }
+
+        i.close {
+          display: block;
+        }
+      }
+    }
+
+    @media @medium, @large {
+      display: none;
+
+      & + label {
+        display: none;
+      }
     }
   }
 
-  h1 {
-    grid-area: title;
+  @media @small {
+    input:not(:checked) ~ div.links {
+      visibility: hidden;
+      height: 0;
+    }
+
+    input:checked ~ div.links {
+      visibility: visible;
+      height: auto;
+    }
   }
 
-  div.nav {
-    grid-area: nav;
-  }
+  div.links {
+    display: flex;
 
-  div.user {
-    grid-area: user;
+    @media @small {
+      flex-direction: column;
+    }
+
+    @media @medium, @large {
+      flex-direction: row;
+    }
+
+    flex-grow: 1;
+
+    &:focus {
+      outline: none;
+      background: #ccc;
+    }
+
+    ul {
+      display: flex;
+
+      @media @small {
+        flex-direction: column;
+      }
+
+      @media @medium, @large {
+        flex-direction: row;
+      }
+
+      @media (min-width: 501px) {
+        li:not(:first-child):before {
+          content: "|";
+          margin: 0 5px;
+        }
+      }
+    }
+
+    ul.nav {
+      flex-grow: 1;
+    }
   }
 }

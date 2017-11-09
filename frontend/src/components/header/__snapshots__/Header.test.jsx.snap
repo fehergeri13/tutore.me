@@ -7,11 +7,30 @@ exports[`Header renders correctly 1`] = `
   <h1>
     tutore.me
   </h1>
+  <input
+    id="habmurger-toggle"
+    type="checkbox"
+  />
+  <label
+    className="hamburger"
+    htmlFor="habmurger-toggle"
+  >
+    <i
+      className="material-icons menu"
+    >
+      menu
+    </i>
+    <i
+      className="material-icons close"
+    >
+      close
+    </i>
+  </label>
   <div
-    className="nav"
+    className="links"
   >
     <ul
-      className="links"
+      className="nav"
     >
       <li>
         <a
@@ -30,12 +49,8 @@ exports[`Header renders correctly 1`] = `
         </a>
       </li>
     </ul>
-  </div>
-  <div
-    className="user"
-  >
     <ul
-      className="links"
+      className="user"
     >
       <li>
         <a

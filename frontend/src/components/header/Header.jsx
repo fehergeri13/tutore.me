@@ -9,15 +9,19 @@ export default class App extends React.Component {
         return <div className="header">
             <h1>tutore.me</h1>
 
-            <div className="nav">
-                <ul className="links">
+            <input id="habmurger-toggle" type="checkbox"/>
+            <label htmlFor="habmurger-toggle" className="hamburger">
+                <i className="material-icons menu">menu</i>
+                <i className="material-icons close">close</i>
+            </label>
+
+            <div className="links">
+                <ul className="nav">
                     <li><Link to="/">Hirdetések</Link></li>
                     <li><Link to="/create">Új hirdetés</Link></li>
                 </ul>
-            </div>
 
-            <div className="user">
-                <ul className="links">
+                <ul className="user">
                     <li><Link to="/messages">Üzenetek</Link></li>
                     <li><Link to="/user">Profilom</Link></li>
                     <li><Link to="/logout">Kilépés</Link></li>
