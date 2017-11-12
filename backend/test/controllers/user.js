@@ -601,7 +601,7 @@ describe('User handling controller', () => {
         describe('Unauthorized access', () => {
             it('should return 401', done => {
                 chai.request(server)
-                    .post('/user/logout')
+                    .get('/user/logout')
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(401);
@@ -617,7 +617,7 @@ describe('User handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test2', password: '1234' })
                     .then((res) => {
-                        agent.post('/user/logout')
+                        agent.get('/user/logout')
                             .end((err, res) => {
                                 should.not.exist(err);
                                 res.status.should.equal(200);

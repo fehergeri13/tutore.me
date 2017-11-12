@@ -54,6 +54,18 @@ router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
+ * /user/logout: GET
+ * 
+ * Logs out the current user.
+ */
+router.get('/logout', userMiddleware, authMiddleware, (req, res, next) => {
+    delete req.session;
+    delete req.session.user;
+
+    res.status(200).end();
+});
+
+/**
  * /user/:id: GET
  * response: {
  *  username: string
@@ -88,18 +100,6 @@ router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
             res.send(response);
         }
     });
-});
-
-/**
- * /user/logout: POST
- * 
- * Logs out the current user.
- */
-router.post('/logout', userMiddleware, authMiddleware, (req, res, next) => {
-    delete req.session;
-    delete req.session.user;
-
-    res.status(200).end();
 });
 
 /**
@@ -271,22 +271,26 @@ router.post('/changePassword', userMiddleware, authMiddleware, (req, res, next) 
  */
 router.post('/addTrustedUser', userMiddleware, authMiddleware, (req, res, next) => {
     if (!req.body.userId) {
+        console.log('no userId');
         res.status(400).end();
     } else {
         User.findById(req.body.userId, (err, user) => {
             if (!user || err) {
+                console.log('invalid userId');
                 res.status(400).end();
             } else {
                 if (req.user.trustedUsers.indexOf(user._id) < 0) {
                     req.user.trustedUsers.push(user._id)
                     req.user.save((err) => {
                         if (err) {
+                            console.log(err);
                             res.status(400).end();
                         } else {
                             res.status(200).end();
                         }
                     })
                 } else {
+                    console.log('no trusted user');
                     res.status(400).end();
                 }
             }
