@@ -12,14 +12,14 @@ const PostSchema = new Schema({
     },
     type: {
         type: Schema.Types.String,
-        enum: [{Demand, Supply}],
+        enum: ['demand', 'supply'],
         required: true
     },
     subject: {
         type: Schema.Types.String,
         required: true
     },
-    createdAt {
+    createdAt: {
         type: Schema.Types.Date,
         required: true
     },

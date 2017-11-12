@@ -12,7 +12,7 @@ const userMiddleware = require('../middlewares/user');
 const authMiddleware = require('../middlewares/auth');
 
 /**
- * /user/list: GET
+ * GET: /user/list
  * response: {
  *  users: [{
  *   id: string
@@ -54,7 +54,7 @@ router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
- * /user/logout: GET
+ * GET: /user/logout
  * 
  * Logs out the current user.
  */
@@ -66,7 +66,7 @@ router.get('/logout', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
- * /user/:id: GET
+ * GET: /user/:id
  * response: {
  *  username: string
  *  registeredAt: date
@@ -91,7 +91,8 @@ router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
                 registeredAt: user.registeredAt
             };
 
-            if (user.trustedUsers && user.trustedUsers.indexOf(req.user._id) >= 0) {
+            if ((user.trustedUsers && user.trustedUsers.indexOf(req.user._id) >= 0) ||
+                user._id.toString() == req.user._id.toString()) {
                 response.email = user.email;
                 response.firstName = user.firstName;
                 response.lastName = user.lastName;
@@ -103,7 +104,7 @@ router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
- * /user/login: POST
+ * POST: /user/login
  * request: {
  *  username: string, required
  *  password: string, required
@@ -147,7 +148,7 @@ router.post('/login', (req, res, next) => {
 });
 
 /**
- * /user/register: POST
+ * POST: /user/register
  * request: {
  *  username: string, required
  *  password: string, required
@@ -190,7 +191,7 @@ router.post('/register', (req, res, next) => {
 });
 
 /**
- * /user/edit: POST
+ * POST: /user/edit
  * request: {
  *  email: string
  *  firstName: string
@@ -220,7 +221,7 @@ router.post('/edit', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
- * /user/changePassword
+ * POST: /user/changePassword
  * request: {
  *  currentPassword: string, required
  *  newPassword: string, required
@@ -261,7 +262,7 @@ router.post('/changePassword', userMiddleware, authMiddleware, (req, res, next) 
 });
 
 /**
- * /user/addTrustedUser: POST
+ * POST: /user/addTrustedUser
  * request: {
  *  userId: string, required
  * }
@@ -281,7 +282,6 @@ router.post('/addTrustedUser', userMiddleware, authMiddleware, (req, res, next) 
                     req.user.trustedUsers.push(user._id)
                     req.user.save((err) => {
                         if (err) {
-                            console.log(err);
                             res.status(400).end();
                         } else {
                             res.status(200).end();
