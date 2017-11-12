@@ -271,12 +271,10 @@ router.post('/changePassword', userMiddleware, authMiddleware, (req, res, next) 
  */
 router.post('/addTrustedUser', userMiddleware, authMiddleware, (req, res, next) => {
     if (!req.body.userId) {
-        console.log('no userId');
         res.status(400).end();
     } else {
         User.findById(req.body.userId, (err, user) => {
             if (!user || err) {
-                console.log('invalid userId');
                 res.status(400).end();
             } else {
                 if (req.user.trustedUsers.indexOf(user._id) < 0) {
@@ -290,7 +288,6 @@ router.post('/addTrustedUser', userMiddleware, authMiddleware, (req, res, next) 
                         }
                     })
                 } else {
-                    console.log('no trusted user');
                     res.status(400).end();
                 }
             }
