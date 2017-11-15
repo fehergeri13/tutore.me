@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const RatingSchema = new Schema({
     stars: {
         type: Schema.Types.Number,
-        min: 0,
+        min: 1,
         max: 5,
         required: true
     },

@@ -6,7 +6,6 @@ const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 
-const argon = require('argon2');
 const User = require('../models/user');
 const Message = require('../models/message');
 
