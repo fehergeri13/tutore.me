@@ -16,7 +16,6 @@ const User = require('../../models/user');
 const Post = require('../../models/post');
 
 const server = require('../../app');
-const user = require('../../controllers/user');
 
 chai.use(chaiHttp); 
 
