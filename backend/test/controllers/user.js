@@ -86,13 +86,14 @@ describe('User handling controller', () => {
 
     describe('POST: /user/login', () => {
         describe('Missing request parameters', () => {
-            it('should return 400', done => {
+            it('should return 400 and no user id', done => {
                 chai.request(server)
                     .post('/user/login')
                     .send({})
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(400);
+                        res.body.should.be.empty;
 
                         done();
                     });
@@ -100,7 +101,7 @@ describe('User handling controller', () => {
         });
 
         describe('Non existing user', () => {
-            it('should return 401', done => {
+            it('should return 401 and no user id', done => {
                 chai.request(server)
                     .post('/user/login')
                     .send({
@@ -110,6 +111,7 @@ describe('User handling controller', () => {
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(401);
+                        res.body.should.be.empty;
 
                         done();
                     });
@@ -117,7 +119,7 @@ describe('User handling controller', () => {
         });
 
         describe('Existing user, wrong password', () => {
-            it('should return 401', done => {
+            it('should return 401 and no user id', done => {
                 chai.request(server)
                     .post('/user/login')
                     .send({
@@ -127,6 +129,7 @@ describe('User handling controller', () => {
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(401);
+                        res.body.should.be.empty;
 
                         done();
                     });
@@ -134,7 +137,7 @@ describe('User handling controller', () => {
         });
 
         describe('Existing user, correct password', () => {
-            it('should return 200 and lastLoginAt should be updated', done => {
+            it('should return 200, user id and lastLoginAt should be updated', done => {
                 chai.request(server)
                     .post('/user/login')
                     .send({
@@ -145,8 +148,11 @@ describe('User handling controller', () => {
                         should.not.exist(err);
                         res.status.should.equal(200);
 
+                        should.exist(res.body.userId);
+
                         User.findById(testUsers[0]._id, (err, user) => {
                             should.exist(user.lastLoginAt);
+                            res.body.userId.should.be.equal(user._id.toString());
 
                             done(err);
                         });

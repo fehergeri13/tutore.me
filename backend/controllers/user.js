@@ -109,6 +109,9 @@ router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
  *  username: string, required
  *  password: string, required
  * }
+ * response: {
+ *  userId: string
+ * }
  * 
  * Tries logging in the user with the credentials in the request.
  * Returns 200 if successful, 401 otherwise.
@@ -133,7 +136,7 @@ router.post('/login', (req, res, next) => {
                             user.lastLoginAt = Date.now();
                             user.save((err) => {
                                 if (!err) {
-                                    res.status(200).end();
+                                    res.send({ userId: user._id });
                                 } else {
                                     res.status(400).end();
                                 }
