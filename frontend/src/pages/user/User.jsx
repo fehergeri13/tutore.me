@@ -1,10 +1,18 @@
 import React from 'react';
-
+import {inject, observer} from 'mobx-react';
 
 import "./user.less"
-import Header from "../../components/header/Header";
 
+@inject('model')
+@observer
 export default class App extends React.Component {
+
+
+    async componentDidMount() {
+        const users = await this.props.model.rest.logout();
+        alert(users);
+    }
+
     render() {
         return <div className="user-page">
             <div className="profile">

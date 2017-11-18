@@ -13,7 +13,10 @@ export default class Auth {
     @action async doLogin({username, password}) {
         try {
             await this.model.rest.login({username, password});
-            alert('logged in');
+            this.username = username;
+            this.isLoggedIn = true;
+
+            // this.model.routingStore.push('/user');
         } catch(e) {
             alert(e);
         }

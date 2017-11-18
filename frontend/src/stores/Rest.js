@@ -55,8 +55,48 @@ export default class Rest {
         await axios.post('/user/register', {username, password, email, firstName, lastName});
     }
 
+    /**
+     * GET: /user/logout
+     *
+     * Logs out the current user.
+     */
     async logout() {
-        await axios.post('/user/logout');
+        await axios.get('/user/logout');
+    }
+
+    /**
+     * GET: /user/list
+     * response: {
+     *  users: [{
+     *   id: string
+     *   username: string
+     *   email: string
+     *   registeredAt: string
+     *   lastLoginAt: string, optional
+     *  }]
+     * }
+     *
+     * Lists the registered users (admin function).
+     */
+    async getAllUser() {
+        return await axios.get(`/user/list`);
+    }
+
+
+    /**
+     * GET: /user/:id
+     * response: {
+     *  username: string
+     *  registeredAt: date
+     *  email: string, optional
+     *  lastName: string, optional
+     *  firstName: string, optional
+     * }
+     *
+     * Returns the user data for the given id.
+     */
+    async getUser(username) {
+        return await axios.get(`/user/${username}`);
     }
 
     getPosts({type, value}) {
