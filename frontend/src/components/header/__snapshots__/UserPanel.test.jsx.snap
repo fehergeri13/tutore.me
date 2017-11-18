@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<ul
+  className="user"
+>
+  <li>
+    <a
+      href="/login"
+      onClick={[Function]}
+    >
+      Bejelentkezés
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Header renders logged in 1`] = `
+<ul
+  className="user"
+>
+  <li>
+    <a
+      href="/messages"
+      onClick={[Function]}
+    >
+      Üzenetek
+    </a>
+  </li>
+  <li>
+    <a
+      href="/user"
+      onClick={[Function]}
+    >
+      Profilom
+    </a>
+  </li>
+  <li>
+    <a
+      href="/logout"
+      onClick={[Function]}
+    >
+      Kilépés
+    </a>
+  </li>
+</ul>
+`;
+
+exports[`Header renders logged out 1`] = `
+<ul
+  className="user"
+>
+  <li>
+    <a
+      href="/login"
+      onClick={[Function]}
+    >
+      Bejelentkezés
+    </a>
+  </li>
+</ul>
+`;

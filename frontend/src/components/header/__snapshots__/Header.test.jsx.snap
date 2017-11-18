@@ -54,26 +54,10 @@ exports[`Header renders correctly 1`] = `
     >
       <li>
         <a
-          href="/messages"
+          href="/login"
           onClick={[Function]}
         >
-          Üzenetek
-        </a>
-      </li>
-      <li>
-        <a
-          href="/user"
-          onClick={[Function]}
-        >
-          Profilom
-        </a>
-      </li>
-      <li>
-        <a
-          href="/logout"
-          onClick={[Function]}
-        >
-          Kilépés
+          Bejelentkezés
         </a>
       </li>
     </ul>
