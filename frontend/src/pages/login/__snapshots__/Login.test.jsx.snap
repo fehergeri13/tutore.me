@@ -10,13 +10,18 @@ exports[`Login renders correctly 1`] = `
     <h2>
       Bejelentkezés
     </h2>
-    <form>
+    <form
+      onSubmit={[Function]}
+    >
       <label>
         <span>
           Felhasználónév
         </span>
         <input
+          name="username"
+          onChange={[Function]}
           type="text"
+          value=""
         />
       </label>
       <label>
@@ -24,7 +29,10 @@ exports[`Login renders correctly 1`] = `
           Jelszó
         </span>
         <input
+          name="password"
+          onChange={[Function]}
           type="password"
+          value=""
         />
       </label>
       <label>
@@ -48,21 +56,18 @@ exports[`Login renders correctly 1`] = `
     <h2>
       Regisztráció
     </h2>
-    <form>
+    <form
+      onSubmit={[Function]}
+    >
       <label>
         <span>
           Felhasználónév
         </span>
         <input
+          name="username"
+          onChange={[Function]}
           type="text"
-        />
-      </label>
-      <label>
-        <span>
-          Email
-        </span>
-        <input
-          type="text"
+          value=""
         />
       </label>
       <label>
@@ -70,7 +75,10 @@ exports[`Login renders correctly 1`] = `
           Jelszó
         </span>
         <input
+          name="password"
+          onChange={[Function]}
           type="password"
+          value=""
         />
       </label>
       <label>
@@ -78,7 +86,43 @@ exports[`Login renders correctly 1`] = `
           Jelszó megerősítése
         </span>
         <input
+          name="password_confirm"
+          onChange={[Function]}
           type="password"
+          value=""
+        />
+      </label>
+      <label>
+        <span>
+          Email
+        </span>
+        <input
+          name="email"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        <span>
+          Vezetéknév
+        </span>
+        <input
+          name="firstName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </label>
+      <label>
+        <span>
+          Keresztnév
+        </span>
+        <input
+          name="lastName"
+          onChange={[Function]}
+          type="text"
+          value=""
         />
       </label>
       <button
