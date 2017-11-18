@@ -4,5 +4,6 @@
       "targets": {"chrome": "60"}
     }],
     "react"
-  ]
+  ],
+  "plugins": ["transform-decorators-legacy", "transform-class-properties"]
 }

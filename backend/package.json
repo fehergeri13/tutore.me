@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --timeout 10000 --recursive --exit"
+    "test": "mocha --timeout 10000 --recursive --exit",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
