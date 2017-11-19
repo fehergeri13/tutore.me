@@ -12,7 +12,7 @@ div.user-page {
     grid-area: profile;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     border-right: 1px solid #000;
 
     img {
@@ -20,10 +20,16 @@ div.user-page {
       height: 200px;
       border: 1px solid #000;
       display: block;
+      margin: 10px 20px;
     }
 
     div.data {
-      align-self: normal;
+      align-self: left;
+      margin: 10px 20px;
+
+      span {
+        font-weight: bold;
+      }
     }
 
     div.feedbacks {

@@ -35,7 +35,7 @@ export default class Rest {
      * Returns 200 if successful, 401 otherwise.
      */
     async login({username, password}) {
-        await axios.post('/user/login', {username, password});
+        return (await (axios.post('/user/login', {username, password}))).data;
     }
 
 
@@ -95,8 +95,8 @@ export default class Rest {
      *
      * Returns the user data for the given id.
      */
-    async getUser(username) {
-        return await axios.get(`/user/${username}`);
+    async getUser(userId) {
+        return (await axios.get(`/user/${userId}`)).data;
     }
 
     getPosts({type, value}) {

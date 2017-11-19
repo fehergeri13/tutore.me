@@ -8,7 +8,7 @@ import "./login.less"
 
 @inject('model')
 @observer
-export default class App extends React.Component {
+export default class Login extends React.Component {
     @observable.shallow loginData = {
         username: "",
         password: "",

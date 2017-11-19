@@ -1,27 +1,34 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
+import {observable, toJS} from 'mobx';
 
 import "./user.less"
 
 @inject('model')
 @observer
-export default class App extends React.Component {
+export default class User extends React.Component {
 
+    @observable.ref user = undefined;
 
     async componentDidMount() {
-        const users = await this.props.model.rest.logout();
-        alert(users);
+        const userId = this.props.model.auth.userId;
+        this.user = await this.props.model.rest.getUser(userId);
+        console.log(toJS(this.user));
     }
 
     render() {
+        if (this.user === undefined) {
+            return null;
+        }
+
         return <div className="user-page">
             <div className="profile">
                 <img src="" alt=""/>
 
                 <div className="data">
-                    <div className="name">Név <span>Gipsz Jakab</span><button>🖉</button></div>
-                    <div className="email">Email <span>gipsz.jakab@gmail.com</span><button>🖉</button></div>
-                    <div className="address">Lakhely <span>1112 Budapest, Tudósok körútja 1.</span><button>🖉</button></div>
+                    <div className="firstName">Vezetéknév: <span>{this.user.firstName}</span></div>
+                    <div className="lastName">Keresztnév: <span>{this.user.lastName}</span></div>
+                    <div className="email">Email: <span>{this.user.email}</span></div>
                 </div>
 
                 <div className="feedbacks">

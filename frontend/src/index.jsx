@@ -14,6 +14,7 @@ import { Provider } from 'mobx-react';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
+import Logout from "./pages/logout/Logout";
 
 
 const browserHistory = createBrowserHistory();
@@ -33,6 +34,7 @@ ReactDOM.render(
                     <Route path="/create" component={Create}/>
                     <Route path="/messages" component={Messages}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/logout" component={Logout}/>
                     <Route path="/user" component={User}/>
                 </div>
 
