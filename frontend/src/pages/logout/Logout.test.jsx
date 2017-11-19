@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Login from "./Login";
+import Logout from "./Logout";
 import {Provider} from 'mobx-react';
 
-describe('Login', () => {
+describe('Logout', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
-            <Provider model={{}}><Login /></Provider>
+            <Provider model={{}}><Logout /></Provider>
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
