@@ -6,7 +6,7 @@ const ReportSchema = new Schema({
         type: Schema.Types.String,
         enum: ['post', 'rating'],
         required: true
-    }
+    },
     comment: {
         type: Schema.Types.String
     },
@@ -17,11 +17,16 @@ const ReportSchema = new Schema({
     rating: {
         type: Schema.Types.ObjectId,
         ref: 'Rating'
-    }
+    },
+    reportedBy: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    },
     createdAt: {
         type: Schema.Types.Date,
         required: true
-    }
+    },
 });
 
 const Report = mongoose.model('Report', ReportSchema);
