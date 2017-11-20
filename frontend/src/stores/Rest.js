@@ -196,4 +196,26 @@ export default class Rest {
     async sendMessage(userId, message) {
         await axios.post(`/message/`, {to: userId, message});
     }
+
+
+    /**
+     * GET: /message/listUsers
+     * response: [{
+     *  user: {
+     *   userId: string
+     *   username: string
+     *  }
+     *  lastMessage: {
+     *   message: string
+     *   createdAt: date
+     *   received: boolean
+     *  }
+     * }]
+     *
+     * Lists the previously messaged users and the last message
+     * from them.
+     */
+    async getMessageTopics() {
+        return (await axios.get(`/message/listUsers`)).data;
+    }
 }

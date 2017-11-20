@@ -1,8 +1,24 @@
 import React from 'react';
-import "./messages.less"
-import Header from "../../components/header/Header";
+import {inject, observer} from 'mobx-react';
+import autobind from 'autobind-decorator';
+import {observable, toJS} from 'mobx';
 
+import "./messages.less"
+
+@inject('model')
+@observer
 export default class Messages extends React.Component {
+
+    @observable.shallow topics = [];
+
+    async componentDidMount() {
+
+        const topics = await this.props.model.rest.getMessageTopics();
+        this.topics.replace(topics);
+
+        console.log(toJS(this.topics));
+    }
+
     render() {
         return <div className="messages-page">
             <div className="left">
