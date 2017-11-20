@@ -3,17 +3,35 @@ import {inject, observer} from 'mobx-react';
 import {observable, toJS} from 'mobx';
 
 import "./user.less"
+import Post from "../../components/post/Post";
 
 @inject('model')
 @observer
 export default class User extends React.Component {
 
     @observable.ref user = undefined;
+    @observable.shallow userPosts = [];
 
     async componentDidMount() {
         const userId = this.props.model.auth.userId;
         this.user = await this.props.model.rest.getUser(userId);
-        console.log(toJS(this.user));
+        console.log('this.user', toJS(this.user));
+
+        const response = await this.props.model.rest.getPosts();
+        const filteredPosts = response.posts.filter(post => post.userId === userId);
+        this.userPosts.replace(filteredPosts);
+
+        console.log('this.userPosts', toJS(this.userPosts));
+    }
+
+    renderPosts() {
+        if (this.userPosts.length === 0) {
+            return <h2>Nincs hirdetés</h2>
+        }
+
+        return <ul>
+            {this.userPosts.map(post => <Post {...post}/>)}
+        </ul>;
     }
 
     render() {
@@ -49,58 +67,7 @@ export default class User extends React.Component {
 
             <div className="userfeed">
                 <h2>Hirdetéseim</h2>
-                <ul>
-                    <li>
-                        <div className="ad">
-                            <h2><a href="#">Matematika korrepetálás</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                            <div className="time">2017. 11. 08. 23:16</div>
-                        </div>
-                        <div className="actions">
-                            <button>Szerkesztés</button>
-                            <button>Törlés</button>
-                            <button>Meghosszabbítás</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="ad">
-                            <h2><a href="#">Matematika korrepetálás</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                            <div className="time">2017. 11. 08. 23:16</div>
-                        </div>
-                        <div className="actions">
-                            <button>Szerkesztés</button>
-                            <button>Törlés</button>
-                            <button>Meghosszabbítás</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="ad">
-                            <h2><a href="#">Matematika korrepetálás</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                            <div className="time">2017. 11. 08. 23:16</div>
-                        </div>
-                        <div className="actions">
-                            <button>Szerkesztés</button>
-                            <button>Törlés</button>
-                            <button>Meghosszabbítás</button>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="ad">
-                            <h2><a href="#">Matematika korrepetálás</a></h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                            <div className="time">2017. 11. 08. 23:16</div>
-                        </div>
-                        <div className="actions">
-                            <button>Szerkesztés</button>
-                            <button>Törlés</button>
-                            <button>Meghosszabbítás</button>
-                        </div>
-                    </li>
-
-
-                </ul>
+                {this.renderPosts()}
             </div>
         </div>;
     }

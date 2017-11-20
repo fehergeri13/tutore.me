@@ -1,8 +1,16 @@
 import React from 'react';
-import "./create.less"
-import Header from "../../components/header/Header";
+import {observable} from 'mobx';
+import "./create.less";
 
 export default class Create extends React.Component {
+
+    @observable.shallow newPostData = {
+        name: "",
+        body: "",
+        type: "",
+        subject: [],
+    };
+
     render() {
         return <div className="create-page">
             <div className="creator">

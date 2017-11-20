@@ -99,20 +99,33 @@ export default class Rest {
         return (await axios.get(`/user/${userId}`)).data;
     }
 
-    getPosts({type, value}) {
-        return {
-            posts: [{
-                id: "string",
-                name: "string",
-                body: "string",
-                type: "enum, [demand, supply]",
-                subject: "string",
-                userId: "string",
-                username: "string",
-                createdAt: Date.now(),
-                expiresAt: Date.now(),
-            }]
-        }
+
+    /**
+     * GET: /post/list
+     * request: {
+     *  filters: [{
+     *   type: enum, [subject, type], required
+     *   value: string, required
+     *  }]
+     * }
+     * response: {
+     *  posts: [{
+     *   id: string
+     *   name: string
+     *   body: string
+     *   type: enum, [demand, supply]
+     *   subject: string
+     *   userId: string
+     *   username: string
+     *   createdAt: date
+     *   expiresAt: date
+     *  }]
+     * }
+     *
+     * Lists all available posts with the given filters.
+     */
+    async getPosts() {
+        return (await axios.get('/post/list')).data;
     }
 
     getPostById(id) {
