@@ -26,7 +26,7 @@ const authMiddleware = require('../middlewares/auth');
  *  }
  * }]
  * 
- * Lists the previously messsaged users and the last message
+ * Lists the previously messaged users and the last message
  * from them.
  */
 router.get('/listUsers', userMiddleware, authMiddleware, (req, res, next) => {
@@ -136,7 +136,7 @@ router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
  * POST: /message/
  * request: {
  *  to: string, required
- *  messsage: string, required
+ *  message: string, required
  * }
  * 
  * Creates a messages to the given user.

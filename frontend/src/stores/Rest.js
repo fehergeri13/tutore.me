@@ -183,11 +183,17 @@ export default class Rest {
         await axios.put(`/post/${id}`, {name, body, type, subject});
     }
 
-
-
-
-
-    getPostById(id) {
-
+    /**
+     * POST: /message/
+     * request: {
+     *  to: string, required
+     *  message: string, required
+     * }
+     *
+     * Creates a messages to the given user.
+     * Return 200 in case of success, 400 otherwise.
+     */
+    async sendMessage(userId, message) {
+        await axios.post(`/message/`, {to: userId, message});
     }
 }

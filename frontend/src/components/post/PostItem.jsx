@@ -51,7 +51,9 @@ export default class PostItem extends React.Component {
                 <div className="time">Feladás időpontja: {this.props.post.createdAt}</div>
                 <div className="owner">
                     Hirdető neve:
+                    {' '}
                     {this.props.post.username}
+                    {' '}
                     <button
                         type="button"
                         className="send-message"
