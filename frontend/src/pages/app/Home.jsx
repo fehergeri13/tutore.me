@@ -1,7 +1,33 @@
 import React from 'react';
+import {observable, toJS} from 'mobx';
+import {observer, inject} from 'mobx-react';
 import "./home.less"
+import PostItem from "../../components/post/PostItem";
+import Modal from 'react-modal';
 
+@inject('model')
+@observer
 export default class Home extends React.Component {
+
+    @observable.shallow allPosts = [];
+
+    async componentDidMount() {
+        const response = await this.props.model.rest.getPosts();
+        this.allPosts.replace(response.posts);
+
+        console.log('this.allPosts', toJS(this.allPosts));
+    }
+
+    renderPosts() {
+        if (this.allPosts.length === 0) {
+            return <h2>Nincs hirdetés</h2>
+        }
+
+        return <ul>
+            {this.allPosts.map(post => <li key={post.id}><PostItem post={post} isControl={false}/></li>)}
+        </ul>;
+    }
+
     render() {
         return <div className="home-page">
             <div className="search">
@@ -24,33 +50,7 @@ export default class Home extends React.Component {
             </div>
 
             <div className="content">
-                <ul>
-                    <li>
-                        <h2><a href="#">Matematika korrepetálás</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                        <div className="time">2017. 11. 08. 23:16</div>
-                    </li>
-                    <li>
-                        <h2><a href="#">Matematika korrepetálás</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                        <div className="time">2017. 11. 08. 23:16</div>
-                    </li>
-                    <li>
-                        <h2><a href="#">Matematika korrepetálás</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                        <div className="time">2017. 11. 08. 23:16</div>
-                    </li>
-                    <li>
-                        <h2><a href="#">Matematika korrepetálás</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                        <div className="time">2017. 11. 08. 23:16</div>
-                    </li>
-                    <li>
-                        <h2><a href="#">Matematika korrepetálás</a></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?</p>
-                        <div className="time">2017. 11. 08. 23:16</div>
-                    </li>
-                </ul>
+                {this.renderPosts()}
             </div>
         </div>;
     }

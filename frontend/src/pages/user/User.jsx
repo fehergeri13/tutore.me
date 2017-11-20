@@ -3,7 +3,7 @@ import {inject, observer} from 'mobx-react';
 import {observable, toJS} from 'mobx';
 
 import "./user.less"
-import Post from "../../components/post/Post";
+import PostItem from "../../components/post/PostItem";
 
 @inject('model')
 @observer
@@ -30,7 +30,7 @@ export default class User extends React.Component {
         }
 
         return <ul>
-            {this.userPosts.map(post => <Post {...post}/>)}
+            {this.userPosts.map(post => <li key={post.id}><PostItem post={post} isControl={true}/></li>)}
         </ul>;
     }
 

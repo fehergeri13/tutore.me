@@ -128,11 +128,66 @@ export default class Rest {
         return (await axios.get('/post/list')).data;
     }
 
-    getPostById(id) {
-
+    /**
+     * GET: /post/:id
+     * response: {
+     *  id: string
+     *  name: string
+     *  body: string
+     *  type: enum, [demand, supply]
+     *  subject: string
+     *  userId: string
+     *  username: string
+     *  createdAt: date
+     *  expiresAt: date
+     * }
+     *
+     * Returns the post with the given id or 400 in case of
+     * any error.
+     */
+    async getPost(postId) {
+        return (await axios.get(`/post/${postId}`)).data;
     }
 
-    createPost() {
+
+    /**
+     * POST: /post/
+     * request: {
+     *  name: string, required
+     *  body: string, required
+     *  type: enum, [demand, supply], required
+     *  subject: string, required
+     * }
+     *
+     * Creates a new post for the logged in user. Returns
+     * 200 in case of success, 400 otherwise.
+     */
+    async createPost({name, body, type, subject}) {
+        await axios.post('/post/', {name, body, type, subject});
+    }
+
+
+    /**
+     * PUT: /post/:id
+     * request: {
+     *  name: string, required
+     *  body: string, required
+     *  type: enum, [demand, supply], required
+     *  subject: string, required
+     * }
+     *
+     * Updates the given post. Returns 200 in
+     * case of success, 400 otherwise.
+     */
+    async updatePost({id, name, body, type, subject}) {
+        await axios.put(`/post/${id}`, {name, body, type, subject});
+    }
+
+
+
+
+
+    getPostById(id) {
 
     }
 }

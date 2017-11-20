@@ -10,6 +10,7 @@ const config = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
+        publicPath: '/',
     },
     devServer: {
         contentBase: './dist',

@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import Create from "./Create";
+import Editor from "./Editor";
 
-describe('Create', () => {
+describe('Editor', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
-            <Create />
+            <Editor />
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
