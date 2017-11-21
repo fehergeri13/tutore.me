@@ -1,6 +1,6 @@
 div.home-page {
   display: grid;
-  grid-template-columns: 200px auto;
+  grid-template-columns: min-content 1fr;
   grid-template-rows: auto;
   grid-template-areas:
           "search content";
@@ -12,19 +12,23 @@ div.home-page {
   div.search {
     grid-area: search;
 
-    width: 200px;
+    width: 300px;
     display: flex;
     flex-direction: column;
 
     border-right: 1px solid #000;
 
     input#search-text {
+      border: none;
+      border-bottom: 1px solid #000;
+      background: none;
+      padding: 5px;
     }
 
     fieldset {
       display: flex;
       flex-direction: column;
-      margin: 0;
+      margin: 10px 0 0 0;
       padding: 10px;
       border: none;
 

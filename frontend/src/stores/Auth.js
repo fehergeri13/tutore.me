@@ -68,9 +68,9 @@ export default class Auth {
         this.username = undefined;
         this.userId = undefined;
 
-        localStorage.setItem('isLoggedIn', false);
-        localStorage.setItem('username', undefined);
-        localStorage.setItem('userId', undefined);
+        localStorage.removeItem('isLoggedIn');
+        localStorage.removeItem('username');
+        localStorage.removeItem('userId');
 
         this.model.routingStore.push('/');
     }

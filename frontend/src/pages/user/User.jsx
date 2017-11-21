@@ -1,6 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import {observable, toJS} from 'mobx';
+import autobind from 'autobind';
 
 import "./user.less"
 import PostItem from "../../components/post/PostItem";
@@ -9,11 +10,20 @@ import PostItem from "../../components/post/PostItem";
 @observer
 export default class User extends React.Component {
 
+    @observable isSelf = false;
     @observable.ref user = undefined;
     @observable.shallow userPosts = [];
 
     async componentDidMount() {
-        const userId = this.props.model.auth.userId;
+
+        if(!this.props.model.auth.isLoggedIn) {
+            this.props.model.routingStore.push('/login');
+            return;
+        }
+
+        this.isSelf = this.props.id === undefined || this.props.id === this.props.model.auth.userId;
+
+        const userId = this.props.id !== undefined ? this.props.id : this.props.model.auth.userId;
         this.user = await this.props.model.rest.getUser(userId);
         console.log('this.user', toJS(this.user));
 
@@ -34,6 +44,49 @@ export default class User extends React.Component {
         </ul>;
     }
 
+    renderMyData() {
+        if(!this.isSelf) {
+            return null;
+        }
+        return <div className="data">
+            <div className="firstName">Vezetéknév: <span>{this.user.firstName}</span></div>
+            <div className="lastName">Keresztnév: <span>{this.user.lastName}</span></div>
+            <div className="email">Email: <span>{this.user.email}</span></div>
+        </div>
+    }
+
+    renderSendMessage() {
+        if (this.isSelf) {
+            return null;
+        }
+
+        return <button
+            type="button"
+            className="send-message"
+            onClick={this.handleSendMessage}
+        >Írj neki üzenetet</button>;
+    }
+
+    @autobind
+    handleSendMessage(e) {
+        e.preventDefault();
+
+        if (!this.props.model.auth.isLoggedIn) {
+            this.props.model.routingStore.push('/login');
+            return;
+        }
+
+        this.props.model.openMessageModal(this.props.id, this.user.username);
+    }
+
+    renderFeedbackSend() {
+        if (this.isSelf) {
+            return null;
+        }
+
+        return;
+    }
+
     render() {
         if (this.user === undefined) {
             return null;
@@ -41,15 +94,13 @@ export default class User extends React.Component {
 
         return <div className="user-page">
             <div className="profile">
-                <h2>Profilom</h2>
-                <div className="data">
-                    <div className="firstName">Vezetéknév: <span>{this.user.firstName}</span></div>
-                    <div className="lastName">Keresztnév: <span>{this.user.lastName}</span></div>
-                    <div className="email">Email: <span>{this.user.email}</span></div>
-                </div>
+                <h2>{this.isSelf ? 'Profilom' : `${this.user.username} profilja`}</h2>
+                {this.renderMyData()}
+                {this.renderSendMessage()}
+                {this.renderFeedbackSend()}
 
                 <div className="feedbacks">
-                    <h2>Rólam írták</h2>
+                    <h2>{this.isSelf ? 'Rólam írták' : 'Róla írták'}</h2>
 
                     <ul>
                         <li>
@@ -65,7 +116,7 @@ export default class User extends React.Component {
             </div>
 
             <div className="userfeed">
-                <h2>Hirdetéseim</h2>
+                <h2>{this.isSelf ? 'Hirdetéseim' : 'Hirdetései'}</h2>
                 {this.renderPosts()}
             </div>
         </div>;

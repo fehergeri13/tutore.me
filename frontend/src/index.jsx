@@ -42,7 +42,8 @@ ReactDOM.render(
                     <Route path="/messages" component={Messages}/>
                     <Route path="/login" component={Login}/>
                     <Route path="/logout" component={Logout}/>
-                    <Route path="/user" component={User}/>
+                    <Route exact path="/user" component={User}/>
+                    <Route path="/user/:id" render={(props) => <User id={props.match.params.id}/>}/>
                 </div>
 
                 <div className="footer">

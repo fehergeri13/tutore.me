@@ -9,6 +9,11 @@ import "./editor.less";
 export default class Editor extends React.Component {
 
     async componentDidMount() {
+        if(!this.props.model.auth.isLoggedIn) {
+            this.props.model.routingStore.push('/login');
+            return;
+        }
+
         if (this.props.id !== undefined) {
             this.isLoading = true;
 

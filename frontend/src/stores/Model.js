@@ -9,16 +9,18 @@ export default class Model {
     @observable.ref rest = new Rest(this);
 
     @observable isMessageModalOpen = false;
-    @observable.ref messagePost = undefined;
+    @observable messageUserId = undefined;
+    @observable messageUsername = undefined;
 
 
     constructor(routingStore) {
         this.routingStore = routingStore;
     }
 
-    @action openMessageModal(post) {
+    @action openMessageModal(messageUserId, messageUsername) {
         this.isMessageModalOpen = true;
-        this.messagePost = post;
+        this.messageUserId = messageUserId;
+        this.messageUsername = messageUsername;
     }
 
     @action closeMessageModal() {

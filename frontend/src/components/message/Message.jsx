@@ -28,7 +28,7 @@ export default class Message extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        this.props.model.rest.sendMessage(this.props.model.messagePost.userId, this.data.message);
+        this.props.model.rest.sendMessage(this.props.model.messageUserId, this.data.message);
     }
 
     @autobind
@@ -61,7 +61,7 @@ export default class Message extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <input
                     type="text"
-                    value={this.props.model.messagePost.username}
+                    value={this.props.model.messageUsername}
                     readOnly
                     />
                 <input

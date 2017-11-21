@@ -3,6 +3,7 @@ import {inject, observer} from 'mobx-react';
 import autobind from 'autobind-decorator';
 import "./post_item.less";
 import moment from 'moment';
+import {Link} from "react-router-dom";
 
 @inject('model')
 @observer
@@ -23,18 +24,6 @@ export default class PostItem extends React.Component {
     @autobind
     handleEditClick(e) {
         this.props.model.routingStore.push('/edit/'+this.props.post.id)
-    }
-
-    @autobind
-    handleSendMessage(e) {
-        e.preventDefault();
-
-        if (!this.props.model.auth.isLoggedIn) {
-            this.props.model.routingStore.push('/login');
-            return;
-        }
-
-        this.props.model.openMessageModal(this.props.post);
     }
 
     @autobind
@@ -59,16 +48,16 @@ export default class PostItem extends React.Component {
         </div>
     }
 
-    renderSendMessage() {
+    renderOwner() {
         if(this.props.model.auth.userId === this.props.post.userId) {
             return null;
         }
 
-        return <button
-            type="button"
-            className="send-message"
-            onClick={this.handleSendMessage}
-        >Írj neki üzenetet</button>;
+        return <div className="owner">
+            Hirdető:
+            {' '}
+            <Link to={`/user/${this.props.post.userId}`}>{this.props.post.username}</Link>
+        </div>
     }
 
     render() {
@@ -79,13 +68,7 @@ export default class PostItem extends React.Component {
                 <h2><a href="#">{this.props.post.name}</a></h2>
                 <p>{this.props.post.body}</p>
                 <div className="time">Lejárat időpontja: {expireDate.format('YYYY. MM. DD. dddd HH:mm')}</div>
-                <div className="owner">
-                    Hirdető neve:
-                    {' '}
-                    {this.props.post.username}
-                    {' '}
-                    {this.renderSendMessage()}
-                </div>
+                {this.renderOwner()}
             </div>
             {this.renderControls()}
         </div>;
