@@ -36,5 +36,11 @@ div.app {
   & > div.content {
     grid-area: content;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+      flex-grow: 1;
+    }
   }
 }

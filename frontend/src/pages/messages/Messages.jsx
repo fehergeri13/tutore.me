@@ -16,25 +16,56 @@ export default class Messages extends React.Component {
 
     @observable.shallow messages = [];
 
-    async componentDidMount() {
+    @observable newMessage = "";
 
+    async componentDidMount() {
+        await this.getTopics();
+    }
+
+    async getTopics() {
         const topics = await this.props.model.rest.getMessageTopics();
         this.topics.replace(topics);
 
-        if(this.topics.length > 0) {
+        if (this.topics.length > 0 && this.selectedTopic === -1) {
             this.selectedTopic = 0;
 
-            const currentTopic = this.topics[this.selectedTopic];
-            const messages = await this.props.model.rest.getMessagesWithUser(currentTopic.user.userId);
-            this.messages.replace(messages);
+            await this.getMessages();
         }
+    }
 
-        console.log(toJS(this.topics));
+    async getMessages() {
+        const currentTopic = this.topics[this.selectedTopic];
+        const currentUserId = currentTopic.user.userId;
+        const messages = await this.props.model.rest.getMessagesWithUser(currentUserId);
+        this.messages.replace(messages);
     }
 
     @autobind
-    handleSelectTopic(index) {
+    async handleSelectTopic(index) {
         this.selectedTopic = index;
+
+        await this.getMessages();
+    }
+
+    @autobind
+    handleMessageChange(e) {
+        this.newMessage = e.target.value;
+    }
+
+    @autobind
+    async handleNewMessageSubmit(e) {
+        e.preventDefault();
+
+        const currentTopic = this.topics[this.selectedTopic];
+        const currentUserId = currentTopic.user.userId;
+
+        const message = this.newMessage;
+        this.newMessage = "";
+
+        await this.props.model.rest.sendMessage(currentUserId, message);
+
+        this.getMessages();
+        this.getTopics();
     }
 
     render() {
@@ -55,25 +86,21 @@ export default class Messages extends React.Component {
 
             <div className="right">
                 <ul className="messages">
-                    <li className="sent">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores </span>
-                    </li>
-                    <li className="received">
-                        <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores </span>
-                    </li>
-                    <li className="received">
-                        <span>:D</span>
-                    </li>
-                    <li className="sent">
-                        <span>Hablaka dabla abrak abra abbra</span>
-                    </li>
-                    <li className="sent">
-                        <span>Wtf?</span>
-                    </li>
-                    <li className="sent">
-                        <span>Ok</span>
-                    </li>
+                    {this.messages.map((message, index) => <li className={message.received ? "received" : "sent"} key={index}>
+                        <span>{message.message}</span>
+                    </li>)}
                 </ul>
+                <form
+                    className="new-message"
+                    onSubmit={this.handleNewMessageSubmit}
+                >
+                    <input
+                        type="text"
+                        value={this.newMessage}
+                        onChange={this.handleMessageChange}
+                    />
+                    <button type="submit">Küld</button>
+                </form>
             </div>
         </div>;
     }

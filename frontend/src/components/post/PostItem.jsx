@@ -43,22 +43,30 @@ export default class PostItem extends React.Component {
         </div>
     }
 
+    renderSendMessage() {
+        if(this.props.model.auth.userId === this.props.post.userId) {
+            return null;
+        }
+
+        return <button
+            type="button"
+            className="send-message"
+            onClick={this.handleSendMessage}
+        >Írj neki üzenetet</button>;
+    }
+
     render() {
         return <div className="post-item">
             <div className="post">
                 <h2><a href="#">{this.props.post.name}</a></h2>
                 <p>{this.props.post.body}</p>
-                <div className="time">Feladás időpontja: {this.props.post.createdAt}</div>
+                <div className="time">Lejárat időpontja: {this.props.post.expiresAt}</div>
                 <div className="owner">
                     Hirdető neve:
                     {' '}
                     {this.props.post.username}
                     {' '}
-                    <button
-                        type="button"
-                        className="send-message"
-                        onClick={this.handleSendMessage}
-                    >Írj neki üzenetet</button>
+                    {this.renderSendMessage()}
                 </div>
             </div>
             {this.renderControls()}
