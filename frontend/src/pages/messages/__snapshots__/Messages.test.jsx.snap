@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User renders correctly 1`] = `
+exports[`Messages renders correctly 1`] = `
 <div
   className="messages-page"
 >
@@ -9,97 +9,29 @@ exports[`User renders correctly 1`] = `
   >
     <ul
       className="conservations"
-    >
-      <li>
-        <img />
-        <div
-          className="name"
-        >
-          Fülöp Farkas
-        </div>
-        <div
-          className="last-message"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores 
-        </div>
-      </li>
-      <li>
-        <img />
-        <div
-          className="name"
-        >
-          Gipsz Józsi
-        </div>
-        <div
-          className="last-message"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores 
-        </div>
-      </li>
-      <li>
-        <img />
-        <div
-          className="name"
-        >
-          Lellei Lilla
-        </div>
-        <div
-          className="last-message"
-        >
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores 
-        </div>
-      </li>
-    </ul>
+    />
   </div>
   <div
     className="right"
   >
     <ul
       className="messages"
+    />
+    <form
+      className="new-message"
+      onSubmit={[Function]}
     >
-      <li
-        className="sent"
+      <input
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        type="submit"
       >
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores 
-        </span>
-      </li>
-      <li
-        className="received"
-      >
-        <span>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad alias amet asperiores 
-        </span>
-      </li>
-      <li
-        className="received"
-      >
-        <span>
-          :D
-        </span>
-      </li>
-      <li
-        className="sent"
-      >
-        <span>
-          Hablaka dabla abrak abra abbra
-        </span>
-      </li>
-      <li
-        className="sent"
-      >
-        <span>
-          Wtf?
-        </span>
-      </li>
-      <li
-        className="sent"
-      >
-        <span>
-          Ok
-        </span>
-      </li>
-    </ul>
+        Küld
+      </button>
+    </form>
   </div>
 </div>
 `;

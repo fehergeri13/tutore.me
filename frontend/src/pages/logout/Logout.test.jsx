@@ -5,8 +5,13 @@ import {Provider} from 'mobx-react';
 
 describe('Logout', () => {
     it('renders correctly', () => {
+        const mockModel = {
+            auth: {
+                doLogout() {},
+            }
+        };
         const tree = renderer.create(
-            <Provider model={{}}><Logout /></Provider>
+            <Provider model={mockModel}><Logout /></Provider>
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });

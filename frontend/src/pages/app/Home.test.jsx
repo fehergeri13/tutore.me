@@ -1,11 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import Home from "./Home";
+import {Provider} from "mobx-react";
 
-describe('App', () => {
+describe('Home', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
-            <Home />
+            <Provider model={{}}><Home /></Provider>
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });

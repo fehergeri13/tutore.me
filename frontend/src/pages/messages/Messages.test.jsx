@@ -1,11 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import User from "./Messages";
+import Messages from "./Messages";
+import {Provider} from "mobx-react";
 
-describe('User', () => {
+describe('Messages', () => {
     it('renders correctly', () => {
         const tree = renderer.create(
-            <User />
+            <Provider model={{}}><Messages /></Provider>
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders correctly 1`] = `
+exports[`Home renders correctly 1`] = `
 <div
   className="home-page"
 >
@@ -9,155 +9,117 @@ exports[`App renders correctly 1`] = `
   >
     <input
       id="search-text"
-      placeholder="keresés"
+      name="text"
+      onChange={[Function]}
+      placeholder="Szövegre keresés"
       type="text"
+      value=""
     />
-    <fieldset>
+    <fieldset
+      className="type"
+    >
+      <legend>
+        Típus
+      </legend>
       <label>
         <input
-          name="contact"
+          checked={true}
+          name="type"
+          onChange={[Function]}
           type="radio"
-          value="keres"
+          value="all"
         />
-        Keres
+        <span>
+          Mindkettő
+        </span>
       </label>
       <label>
         <input
-          name="contact"
+          checked={false}
+          name="type"
+          onChange={[Function]}
           type="radio"
-          value="keres"
+          value="demand"
         />
-        Kínál
+        <span>
+          Keres
+        </span>
+      </label>
+      <label>
+        <input
+          checked={false}
+          name="type"
+          onChange={[Function]}
+          type="radio"
+          value="supply"
+        />
+        <span>
+          Kínál
+        </span>
       </label>
     </fieldset>
-    <fieldset>
+    <fieldset
+      className="subject"
+    >
       <legend>
         Tantárgy
       </legend>
       <label>
         <input
-          name="contact"
+          checked={false}
+          name="subject"
+          onChange={[Function]}
           type="checkbox"
-          value="keres"
+          value="informatika"
         />
-        Informatika
+        <span>
+          Informatika
+        </span>
       </label>
       <label>
         <input
-          name="contact"
+          checked={false}
+          name="subject"
+          onChange={[Function]}
           type="checkbox"
-          value="keres"
+          value="matematika"
         />
-        Matematika
+        <span>
+          Matematika
+        </span>
       </label>
       <label>
         <input
-          name="contact"
+          checked={false}
+          name="subject"
+          onChange={[Function]}
           type="checkbox"
-          value="keres"
+          value="fizika"
         />
-        Fizika
+        <span>
+          Fizika
+        </span>
       </label>
       <label>
         <input
-          name="contact"
+          checked={false}
+          name="subject"
+          onChange={[Function]}
           type="checkbox"
-          value="keres"
+          value="kemia"
         />
-        Kémia
+        <span>
+          Kémia
+        </span>
       </label>
     </fieldset>
   </div>
   <div
     className="content"
   >
-    <ul>
-      <li>
-        <h2>
-          <a
-            href="#"
-          >
-            Matematika korrepetálás
-          </a>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
-        </p>
-        <div
-          className="time"
-        >
-          2017. 11. 08. 23:16
-        </div>
-      </li>
-      <li>
-        <h2>
-          <a
-            href="#"
-          >
-            Matematika korrepetálás
-          </a>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
-        </p>
-        <div
-          className="time"
-        >
-          2017. 11. 08. 23:16
-        </div>
-      </li>
-      <li>
-        <h2>
-          <a
-            href="#"
-          >
-            Matematika korrepetálás
-          </a>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
-        </p>
-        <div
-          className="time"
-        >
-          2017. 11. 08. 23:16
-        </div>
-      </li>
-      <li>
-        <h2>
-          <a
-            href="#"
-          >
-            Matematika korrepetálás
-          </a>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
-        </p>
-        <div
-          className="time"
-        >
-          2017. 11. 08. 23:16
-        </div>
-      </li>
-      <li>
-        <h2>
-          <a
-            href="#"
-          >
-            Matematika korrepetálás
-          </a>
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium nisi perspiciatis voluptas. A aut consectetur deleniti, ea impedit laboriosam minima molestias non numquam, placeat tempore temporibus ullam. Itaque, provident quae?
-        </p>
-        <div
-          className="time"
-        >
-          2017. 11. 08. 23:16
-        </div>
-      </li>
-    </ul>
+    <h2>
+      Nincs hirdetés
+    </h2>
   </div>
 </div>
 `;

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostItem renders correctly 1`] = `
+<div
+  className="post-item"
+>
+  <div
+    className="post"
+  >
+    <h2>
+      <a
+        href="#"
+      />
+    </h2>
+    <p />
+    <div
+      className="time"
+    >
+      Lejárat időpontja: 
+      2017. 11. 21. Tuesday 12:43
+    </div>
+  </div>
+</div>
+`;

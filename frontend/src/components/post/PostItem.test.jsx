@@ -11,7 +11,7 @@ describe('PostItem', () => {
         const model = new Model();
 
         const tree = renderer.create(
-            <Provider model={model}><Router><PostItem /></Router></Provider>
+            <Provider model={model}><Router><PostItem post={{}} /></Router></Provider>
         ).toJSON();
         expect(tree).toMatchSnapshot();
     });
