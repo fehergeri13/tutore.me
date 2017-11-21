@@ -10,6 +10,22 @@ div.header {
   align-items: baseline;
   border-bottom: 1px solid #000;
 
+  background: #2E7D32;
+  color: #ffffff;
+  padding: 5px 10px 0 10px;
+
+  h1 {
+    margin-right: 10px;
+  }
+
+  a {
+    color: #fff;
+
+    &:hover {
+      color: #ddd;
+    }
+  }
+
   @media @small {
     flex-direction: column;
   }
@@ -29,7 +45,7 @@ div.header {
         right: 0;
         width: 40px;
         height: 40px;
-        background: #ccc;
+        // background: #ccc;
         border: none;
 
         i {
