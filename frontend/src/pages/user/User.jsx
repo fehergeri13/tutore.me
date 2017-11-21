@@ -53,7 +53,7 @@ export default class User extends React.Component {
         }
 
         return <ul>
-            {this.userPosts.map(post => <li key={post.id}><PostItem post={post} isControl={true}/></li>)}
+            {this.userPosts.map(post => <li key={post.id}><PostItem post={post} isControl={this.isSelf}/></li>)}
         </ul>;
     }
 
@@ -100,6 +100,30 @@ export default class User extends React.Component {
         return <Rate myRating={this.myRating} targetUserId={this.props.id}/>;
     }
 
+    renderFeedbacks() {
+        if(this.userRatings.length === 0) {
+            return <div className="feedbacks">
+                <h2>{this.isSelf ? 'Rólam írták' : 'Róla írták'}</h2>
+                <p>Még nincs értékelés.</p>
+            </div>
+        }
+
+        return <div className="feedbacks">
+            <h2>{this.isSelf ? 'Rólam írták' : 'Róla írták'}</h2>
+
+
+            <ul>
+                {this.userRatings.map((rating, index) => <li key={index}>
+                    <div className="stars">
+                        {range(rating.stars).map(num => '★')}
+                        {range(5-rating.stars).map(num => '☆')}
+                    </div>
+                    <p>{rating.body}</p>
+                </li>)}
+            </ul>
+        </div>
+    }
+
     render() {
         if (this.user === undefined) {
             return null;
@@ -112,19 +136,7 @@ export default class User extends React.Component {
                 {this.renderSendMessage()}
                 {this.renderFeedbackSend()}
 
-                <div className="feedbacks">
-                    <h2>{this.isSelf ? 'Rólam írták' : 'Róla írták'}</h2>
-
-                    <ul>
-                        {this.userRatings.map((rating, index) => <li key={index}>
-                            <div className="stars">
-                                {range(rating.stars).map(num => '★')}
-                                {range(5-rating.stars).map(num => '☆')}
-                            </div>
-                            <p>{rating.body}</p>
-                        </li>)}
-                    </ul>
-                </div>
+                {this.renderFeedbacks()}
             </div>
 
             <div className="userfeed">
