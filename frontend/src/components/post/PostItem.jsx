@@ -29,6 +29,11 @@ export default class PostItem extends React.Component {
     handleSendMessage(e) {
         e.preventDefault();
 
+        if (!this.props.model.auth.isLoggedIn) {
+            this.props.model.routingStore.push('/login');
+            return;
+        }
+
         this.props.model.openMessageModal(this.props.post);
     }
 
