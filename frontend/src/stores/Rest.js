@@ -237,4 +237,27 @@ export default class Rest {
     async getMessagesWithUser(userId) {
         return (await axios.get(`/message/list/${userId}`)).data;
     }
+
+    /**
+     * DELETE: /post/:id
+     *
+     * Deletes the given post. Returns 200 in
+     * case of success, 400 otherwise.
+     */
+    async deletePost(postId) {
+        await axios.delete(`/post/${postId}`);
+    }
+
+    /**
+     * POST: /extend
+     * request: {
+     *  postId: string, required
+     * }
+     *
+     * Extends the expiration date of the given post.
+     * Return 200 in case of success, 400 otherwise.
+     */
+    async renewPost(postId) {
+        await axios.post(`/post/extend`, {postId});
+    }
 }

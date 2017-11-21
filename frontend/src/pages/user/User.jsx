@@ -41,8 +41,7 @@ export default class User extends React.Component {
 
         return <div className="user-page">
             <div className="profile">
-                <img src="" alt=""/>
-
+                <h2>Profilom</h2>
                 <div className="data">
                     <div className="firstName">Vezetéknév: <span>{this.user.firstName}</span></div>
                     <div className="lastName">Keresztnév: <span>{this.user.lastName}</span></div>

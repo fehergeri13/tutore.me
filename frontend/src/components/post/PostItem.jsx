@@ -37,6 +37,16 @@ export default class PostItem extends React.Component {
         this.props.model.openMessageModal(this.props.post);
     }
 
+    @autobind
+    async handleDeleteClick() {
+        await this.props.model.rest.deletePost(this.props.post.id);
+    }
+
+    @autobind
+    async handleRenewClick() {
+        await this.props.model.rest.renewPost(this.props.post.id);
+    }
+
     renderControls() {
         if (!this.props.isControl) {
             return null;
@@ -44,8 +54,8 @@ export default class PostItem extends React.Component {
 
         return <div className="controls">
             <button onClick={this.handleEditClick}>Szerkesztés</button>
-            <button>Törlés</button>
-            <button>Meghosszabbítás</button>
+            <button onClick={this.handleDeleteClick}>Törlés</button>
+            <button onClick={this.handleRenewClick}>Meghosszabbítás</button>
         </div>
     }
 

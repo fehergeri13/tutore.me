@@ -139,7 +139,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 /**
- * POST: /extend
+ * POST: /post/extend
  * request: {
  *  postId: string, required
  * }
