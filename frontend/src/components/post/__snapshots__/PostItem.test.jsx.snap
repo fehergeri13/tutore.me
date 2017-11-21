@@ -17,7 +17,7 @@ exports[`PostItem renders correctly 1`] = `
       className="time"
     >
       Lejárat időpontja: 
-      2017. 11. 21. Tuesday 12:43
+      2017. 11. 21. Tuesday 12:53
     </div>
   </div>
 </div>
