@@ -195,11 +195,11 @@ describe('Message handling controller', () => {
         });
     });
 
-    describe('GET: /message/list', () => {
+    describe('GET: /message/list/:userId', () => {
         describe('Unauthorized access', () => {
             it('should return 401', (done) => {
                 chai.request(server)
-                .get('/message/list')
+                .get('/message/list/' + testUsers[1]._id)
                 .end((err, res) => {
                     should.exist(err);
                     res.status.should.equal(401);
@@ -209,8 +209,8 @@ describe('Message handling controller', () => {
             });
         });
 
-        describe('Missing request body', () => {
-            it('should return 400 and no messages', (done) => {
+        describe('Missing request parameter', () => {
+            it('should return 404 and no messages', (done) => {
                 let agent = chai.request.agent(server);
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
@@ -218,7 +218,7 @@ describe('Message handling controller', () => {
                         agent.get('/message/list/')
                             .end((err, res) => {
                                 should.exist(err);
-                                res.status.should.equal(400);
+                                res.status.should.equal(404);
                                 res.body.should.be.empty;
 
                                 done();
@@ -233,8 +233,7 @@ describe('Message handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/message/list/')
-                            .send({ userId: '123123' })
+                        agent.get('/message/list/123123')
                             .end((err, res) => {
                                 should.exist(err);
                                 res.status.should.equal(400);
@@ -252,8 +251,7 @@ describe('Message handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/message/list/')
-                            .send({ userId: testUsers[1]._id })
+                        agent.get('/message/list/' + testUsers[1]._id)
                             .end((err, res) => {
                                 should.not.exist(err);
                                 res.status.should.equal(200);
@@ -273,8 +271,7 @@ describe('Message handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/message/list/')
-                            .send({ userId: testUsers[3]._id })
+                        agent.get('/message/list/' + testUsers[3]._id)
                             .end((err, res) => {
                                 should.not.exist(err);
                                 res.status.should.equal(200);

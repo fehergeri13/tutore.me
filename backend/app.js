@@ -7,8 +7,11 @@ const mongoose = require('mongoose');
 const sessions = require('client-sessions');
 const bodyParser = require('body-parser');
 
+const jsonq = require('express-jsonq');
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(jsonq());
 
 //MongoDB connection
 mongoose.connect(dbconfig.url, {

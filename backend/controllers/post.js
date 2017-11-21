@@ -12,8 +12,8 @@ const userMiddleware = require('../middlewares/user');
 const authMiddleware = require('../middlewares/auth');
 
 /**
- * GET: /post/list
- * request: {
+ * GET: /post/list/?query
+ * query: {
  *  filters: [{
  *   type: enum, [subject, type], required
  *   value: string, required
@@ -41,8 +41,8 @@ router.get('/list', (req, res, next) => {
     const typeFilters = [];
     let missingParams = false;
 
-    if (req.body.filters) {
-        req.body.filters.forEach((filter) => {
+    if (req.jsonq && req.jsonq.filters) {
+        req.jsonq.filters.forEach((filter) => {
             if (!filter.type || !filter.value) {
                 res.status(400).end();
                 missingParams = true;

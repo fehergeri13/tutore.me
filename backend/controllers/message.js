@@ -81,9 +81,6 @@ router.get('/listUsers', userMiddleware, authMiddleware, (req, res, next) => {
 
 /**
  * GET: /message/list/:userId
- * request: {
- *  userId: string, required
- * }
  * response: [{
  *  message: string
  *  received: boolean

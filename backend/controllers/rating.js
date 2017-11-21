@@ -13,10 +13,7 @@ const userMiddleware = require('../middlewares/user');
 const authMiddleware = require('../middlewares/auth');
 
 /**
- * GET: /rating/list
- * request: {
- *  userId: string, required
- * }
+ * GET: /rating/list/:userId
  * response: {[
  *  stars: number
  *  body: string
@@ -28,11 +25,11 @@ const authMiddleware = require('../middlewares/auth');
  * Returns the ratings for the given user. Returns
  * 200 in case of success, 400 otherwise.
  */
-router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
-    if (!req.body || !req.body.userId) {
+router.get('/list/:userId', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.params.userId) {
         res.status(400).end();
     } else {
-        User.findById(req.body.userId, (err, user) => {
+        User.findById(req.params.userId, (err, user) => {
             if (err || !user) {
                 res.status(400).end();
             } else {

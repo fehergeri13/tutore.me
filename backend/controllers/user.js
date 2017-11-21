@@ -80,27 +80,27 @@ router.get('/logout', userMiddleware, authMiddleware, (req, res, next) => {
 router.get('/:id', userMiddleware, authMiddleware, (req, res, next) => {
     if (!req.params.id) {
         res.status(400).end();
-    }
+    } else {
+        User.findById(req.params.id, (err, user) => {
+            if (err || !user) {
+                res.status(400).end();
+            } else {
+                const response = {
+                    username: user.username,
+                    registeredAt: user.registeredAt
+                };
 
-    User.findById(req.params.id, (err, user) => {
-        if (err || !user) {
-            res.status(400).end();
-        } else {
-            const response = {
-                username: user.username,
-                registeredAt: user.registeredAt
-            };
+                if ((user.trustedUsers && user.trustedUsers.indexOf(req.user._id) >= 0) ||
+                    user._id.toString() == req.user._id.toString()) {
+                    response.email = user.email;
+                    response.firstName = user.firstName;
+                    response.lastName = user.lastName;
+                }
 
-            if ((user.trustedUsers && user.trustedUsers.indexOf(req.user._id) >= 0) ||
-                user._id.toString() == req.user._id.toString()) {
-                response.email = user.email;
-                response.firstName = user.firstName;
-                response.lastName = user.lastName;
+                res.send(response);
             }
-
-            res.send(response);
-        }
-    });
+        });
+    }
 });
 
 /**

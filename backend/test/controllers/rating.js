@@ -128,22 +128,22 @@ describe('Rating handling controller', () => {
         });
     });
 
-    describe('GET: /rating/list', () => {
+    describe('GET: /rating/list/:userId', () => {
         describe('Unauthorized access', () => {
             it('should return 401', (done) => {
                 chai.request(server)
-                .get('/rating/list')
-                .end((err, res) => {
-                    should.exist(err);
-                    res.status.should.equal(401);
+                    .get('/rating/list/' + testUsers[1]._id)
+                    .end((err, res) => {
+                        should.exist(err);
+                        res.status.should.equal(401);
 
-                    done();
-                });
+                        done();
+                    });
             });
         });
 
-        describe('Missing request body', () => {
-            it('should return 400 and no ratings', (done) => {
+        describe('Missing request parameter', () => {
+            it('should return 404 and no ratings', (done) => {
                 let agent = chai.request.agent(server);
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
@@ -151,7 +151,7 @@ describe('Rating handling controller', () => {
                         agent.get('/rating/list/')
                             .end((err, res) => {
                                 should.exist(err);
-                                res.status.should.equal(400);
+                                res.status.should.equal(404);
                                 res.body.should.be.empty;
 
                                 done();
@@ -166,8 +166,7 @@ describe('Rating handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/rating/list/')
-                            .send({ userId: '123123' })
+                        agent.get('/rating/list/123123')
                             .end((err, res) => {
                                 should.exist(err);
                                 res.status.should.equal(400);
@@ -185,8 +184,7 @@ describe('Rating handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/rating/list/')
-                            .send({ userId: testUsers[2]._id })
+                        agent.get('/rating/list/' + testUsers[2]._id)
                             .end((err, res) => {
                                 should.not.exist(err);
                                 res.status.should.equal(200);
@@ -204,8 +202,7 @@ describe('Rating handling controller', () => {
                 agent.post('/user/login')
                     .send({ username: 'test1', password: '1234' })
                     .then((res) => {
-                        agent.get('/rating/list/')
-                            .send({ userId: testUsers[1]._id })
+                        agent.get('/rating/list/' + testUsers[1]._id)
                             .end((err, res) => {
                                 should.not.exist(err);
                                 res.status.should.equal(200);

@@ -156,7 +156,7 @@ describe('Post handling controller', () => {
         });
     });
 
-    describe('GET: /post/list', () => {
+    describe('GET: /post/list/?query', () => {
         describe('List posts', () => {
             it('should return 200 and posts that are not expired', (done) => {
                 chai.request(server)
@@ -181,14 +181,13 @@ describe('Post handling controller', () => {
         describe('Missing filter parameter', () => {
             it('should return 400 and not return any posts', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [{
                             type: 'subject'
                         }, {
                             value: 'Subject1'
                         }]
-                    })
+                    }))
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(400);
@@ -202,13 +201,12 @@ describe('Post handling controller', () => {
         describe('Wrong type parameter', () => {
             it('should return 400 and not return any posts', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [{
                             type: 'none',
                             value: ''
                         }]
-                    })
+                    }))
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(400);
@@ -222,13 +220,13 @@ describe('Post handling controller', () => {
         describe('Filter by one subject', () => {
             it('should return 200 and the posts with subject: Subject1', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [{
                             type: 'subject',
                             value: 'Subject1'
                         }]
-                    })
+                    }))
+                    .send()
                     .end((err, res) => {
                         should.not.exist(err);
                         res.status.should.equal(200);
@@ -247,13 +245,12 @@ describe('Post handling controller', () => {
         describe('Filter by one type', () => {
             it('should return 200 and the posts with type: demand', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [{
                             type: 'type',
                             value: 'demand'
                         }]
-                    })
+                    }))
                     .end((err, res) => {
                         should.not.exist(err);
                         res.status.should.equal(200);
@@ -272,8 +269,7 @@ describe('Post handling controller', () => {
         describe('Filter by type and subject', () => {
             it('should return 200 and the post with type: supply, and subject: Subject2', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [
                             {
                                 type: 'type',
@@ -283,7 +279,7 @@ describe('Post handling controller', () => {
                                 type: 'subject',
                                 value: 'Subject2'
                             }]
-                    })
+                    }))
                     .end((err, res) => {
                         should.not.exist(err);
                         res.status.should.equal(200);
@@ -303,8 +299,7 @@ describe('Post handling controller', () => {
         describe('Filter by more subjects', () => {
             it('should return 200 and the posts with subject: Subject1 and Subject2', (done) => {
                 chai.request(server)
-                    .get('/post/list')
-                    .send({
+                    .get('/post/list/?' + JSON.stringify({
                         filters: [
                             {
                                 type: 'subject',
@@ -314,7 +309,7 @@ describe('Post handling controller', () => {
                                 type: 'subject',
                                 value: 'Subject2'
                             }]
-                    })
+                    }))
                     .end((err, res) => {
                         should.not.exist(err);
                         res.status.should.equal(200);
