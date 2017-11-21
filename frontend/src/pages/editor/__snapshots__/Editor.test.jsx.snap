@@ -1,16 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Create renders correctly 1`] = `
+exports[`Editor renders correctly 1`] = `
 <div
-  className="create-page"
+  className="editor-page"
 >
   <div
-    className="creator"
+    className="editor"
   >
     <h2>
       Új hirdetés felvétele
     </h2>
-    <form>
+    <form
+      onSubmit={[Function]}
+    >
       <label
         className="title"
       >
@@ -18,7 +20,10 @@ exports[`Create renders correctly 1`] = `
           Hirdetés neve
         </span>
         <input
+          name="name"
+          onChange={[Function]}
           type="text"
+          value=""
         />
       </label>
       <label
@@ -28,7 +33,9 @@ exports[`Create renders correctly 1`] = `
           Hirdetés szövege
         </span>
         <textarea
-          defaultValue="Valami szöveg"
+          name="body"
+          onChange={[Function]}
+          value=""
         />
       </label>
       <fieldset
@@ -39,9 +46,11 @@ exports[`Create renders correctly 1`] = `
         </legend>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="type"
+            onChange={[Function]}
             type="radio"
-            value="keres"
+            value="demand"
           />
           <span>
             Keres
@@ -49,9 +58,11 @@ exports[`Create renders correctly 1`] = `
         </label>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="type"
+            onChange={[Function]}
             type="radio"
-            value="keres"
+            value="supply"
           />
           <span>
             Kínál
@@ -66,9 +77,11 @@ exports[`Create renders correctly 1`] = `
         </legend>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="subject"
+            onChange={[Function]}
             type="checkbox"
-            value="keres"
+            value="informatika"
           />
           <span>
             Informatika
@@ -76,9 +89,11 @@ exports[`Create renders correctly 1`] = `
         </label>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="subject"
+            onChange={[Function]}
             type="checkbox"
-            value="keres"
+            value="matematika"
           />
           <span>
             Matematika
@@ -86,9 +101,11 @@ exports[`Create renders correctly 1`] = `
         </label>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="subject"
+            onChange={[Function]}
             type="checkbox"
-            value="keres"
+            value="fizika"
           />
           <span>
             Fizika
@@ -96,9 +113,11 @@ exports[`Create renders correctly 1`] = `
         </label>
         <label>
           <input
-            name="contact"
+            checked={false}
+            name="subject"
+            onChange={[Function]}
             type="checkbox"
-            value="keres"
+            value="kemia"
           />
           <span>
             Kémia
@@ -108,10 +127,15 @@ exports[`Create renders correctly 1`] = `
       <div
         className="buttons"
       >
-        <button>
+        <button
+          onClick={[Function]}
+          type="button"
+        >
           Törlés
         </button>
-        <button>
+        <button
+          type="submit"
+        >
           Mentés
         </button>
       </div>
