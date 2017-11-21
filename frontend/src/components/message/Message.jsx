@@ -25,21 +25,23 @@ export default class Message extends React.Component {
     }
 
     @autobind
-    handleSubmit(e) {
+    async handleSubmit(e) {
         e.preventDefault();
 
-        this.props.model.rest.sendMessage(this.props.model.messageUserId, this.data.message);
+        await this.props.model.rest.sendMessage(this.props.model.messageUserId, this.data.message);
+        this.data.message = "";
+        this.props.model.closeMessageModal();
     }
 
     @autobind
     handleCancelClick(e) {
         e.preventDefault();
-
+        this.data.message = "";
         this.props.model.closeMessageModal();
     }
 
     render() {
-        if(!this.props.model.isMessageModalOpen) {
+        if (!this.props.model.isMessageModalOpen) {
             return null;
         }
 
@@ -59,25 +61,31 @@ export default class Message extends React.Component {
             <h2>Üzenet küldése</h2>
 
             <form onSubmit={this.handleSubmit}>
-                <input
-                    type="text"
-                    value={this.props.model.messageUsername}
-                    readOnly
+                <label>
+                    Neki:
+                    <input
+                        type="text"
+                        value={this.props.model.messageUsername}
+                        readOnly
                     />
-                <input
-                    type="text"
+                </label>
+                <textarea
                     name="message"
                     onChange={this.handleChange}
                     value={this.data.message}
                 />
-                <button
-                type="submit">
-                    Küld
-                </button>
-                <button
-                    type="button"
-                    onClick={this.handleCancelClick}
-                >Mégsem küldök üzenetet</button>
+                <div className="buttons">
+                    <button
+                        className="happy"
+                        type="submit">
+                        Küld
+                    </button>
+                    <button
+                        type="button"
+                        onClick={this.handleCancelClick}
+                    >Mégsem küldök üzenetet
+                    </button>
+                </div>
             </form>
         </Modal>
     }

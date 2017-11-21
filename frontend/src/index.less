@@ -18,6 +18,32 @@ textarea {
   resize: none;
 }
 
+button {
+  padding: 5px;
+  border: 1px solid #000;
+  background: none;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  &.happy {
+    background: #A5D6A7;
+
+    &:hover {
+      background: #81C784;
+    }
+
+    &:active {
+      background: #66BB6A;
+    }
+  }
+}
+
 div.app {
   width: 100vw;
   height: 100vh;
