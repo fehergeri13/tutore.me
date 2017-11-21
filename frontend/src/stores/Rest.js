@@ -218,4 +218,23 @@ export default class Rest {
     async getMessageTopics() {
         return (await axios.get(`/message/listUsers`)).data;
     }
+
+    /**
+     * GET: /message/list/:userId
+     * request: {
+     *  userId: string, required
+     * }
+     * response: [{
+     *  message: string
+     *  received: boolean
+     *  createdAt: date
+     * }]
+     *
+     * Returns the messages sent to and received from the
+     * user in the request body. Returns 200 in case of success,
+     * 400 otherwise.
+     */
+    async getMessagesWithUser(userId) {
+        return (await axios.get(`/message/list/${userId}`)).data;
+    }
 }

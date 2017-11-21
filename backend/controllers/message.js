@@ -80,7 +80,7 @@ router.get('/listUsers', userMiddleware, authMiddleware, (req, res, next) => {
 });
 
 /**
- * GET: /messages/list
+ * GET: /message/list/:userId
  * request: {
  *  userId: string, required
  * }
@@ -94,11 +94,11 @@ router.get('/listUsers', userMiddleware, authMiddleware, (req, res, next) => {
  * user in the request body. Returns 200 in case of success,
  * 400 otherwise.
  */
-router.get('/list', userMiddleware, authMiddleware, (req, res, next) => {
-    if (!req.body || !req.body.userId) {
+router.get('/list/:userId', userMiddleware, authMiddleware, (req, res, next) => {
+    if (!req.params || !req.params.userId) {
         res.status(400).end();
     } else {
-        User.findById(req.body.userId, (err, user) => {
+        User.findById(req.params.userId, (err, user) => {
             if (err || !user) {
                 res.status(400).end();
             } else {

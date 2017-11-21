@@ -15,7 +15,6 @@ div.messages-page {
   div.left {
     display: flex;
     flex-direction: column;
-    align-items: center;
     border-right: 1px solid #000;
 
     ul.conservations li {
@@ -26,7 +25,16 @@ div.messages-page {
               "image name"
               "image last-message";
 
-      margin: 16px;
+      padding: 16px;
+      border-bottom: 1px solid #000;
+
+      &:hover {
+        background: #e9e9e9;
+      }
+
+      &.selected {
+        background: #e1e1e1;
+      }
 
       img {
         grid-area: image;
@@ -39,11 +47,12 @@ div.messages-page {
 
       div.name {
         grid-area: name;
+        font-size: 1.0rem;
       }
 
       div.last-message {
         grid-area: last-message;
-        font-size: 1.0rem;
+        font-size: 0.8rem;
       }
     }
   }
