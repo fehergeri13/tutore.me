@@ -260,4 +260,50 @@ export default class Rest {
     async renewPost(postId) {
         await axios.post(`/post/extend`, {postId});
     }
+
+    /**
+     * POST: /rating/
+     * request: {
+     *  targetId: string, required
+     *  stars: number, required
+     *  body: string, required
+     * }
+     *
+     * Creates a new rating of the given user.
+     * Return 200 in case of success, 400 otherwise.
+     */
+    async sendRating(userId, stars, body) {
+        await axios.post(`/rating/`, {targetId: userId, stars, body});
+    }
+
+    /**
+     * GET: /rating/list/:userId
+     * response: {[
+     *  stars: number
+     *  body: string
+     *  userId: string
+     *  username: string
+     *  createdAt: date
+     * ]}
+     *
+     * Returns the ratings for the given user. Returns
+     * 200 in case of success, 400 otherwise.
+     */
+    async getRatings(userId) {
+        return (await axios.get(`/rating/list/${userId}`)).data;
+    }
+
+    /**
+     * PUT: /rating/:id
+     * request: {
+     *  stars: number
+     *  body: string
+     * }
+     *
+     * Updates the given rating. Return 200
+     * in case of success, 400 otherwise.
+     */
+    async updateRating(ratingId, stars, body) {
+        await axios.put(`/rating/${ratingId}`, {stars, body});
+    }
 }

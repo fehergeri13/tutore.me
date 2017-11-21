@@ -41,7 +41,8 @@ router.get('/list/:userId', userMiddleware, authMiddleware, (req, res, next) => 
 
                         ratings.forEach((rating) => {
                             result.push({
-                                stars: rating.start,
+                                id: rating._id,
+                                stars: rating.stars,
                                 body: rating.body,
                                 userId: rating.ratedBy._id,
                                 username: rating.ratedBy.username,

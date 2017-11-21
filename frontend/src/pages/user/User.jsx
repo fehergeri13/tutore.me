@@ -1,10 +1,12 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
-import {observable, toJS} from 'mobx';
+import {observable, toJS, computed} from 'mobx';
 import autobind from 'autobind';
+import {range} from 'lodash';
 
 import "./user.less"
 import PostItem from "../../components/post/PostItem";
+import Rate from "../../components/rate/Rate";
 
 @inject('model')
 @observer
@@ -13,6 +15,9 @@ export default class User extends React.Component {
     @observable isSelf = false;
     @observable.ref user = undefined;
     @observable.shallow userPosts = [];
+    @observable.shallow userRatings = [];
+
+
 
     async componentDidMount() {
 
@@ -32,6 +37,14 @@ export default class User extends React.Component {
         this.userPosts.replace(filteredPosts);
 
         console.log('this.userPosts', toJS(this.userPosts));
+
+
+        const ratings = await this.props.model.rest.getRatings(userId);
+        this.userRatings.replace(ratings);
+    }
+
+    @computed get myRating() {
+        return this.userRatings.find(rating => rating.userId === this.props.model.auth.userId);
     }
 
     renderPosts() {
@@ -84,29 +97,7 @@ export default class User extends React.Component {
             return null;
         }
 
-        return <form className="rating">
-            <h3>Értékelés írása</h3>
-
-            <div className="stars">
-                <input className="star star-5" id="star-5" type="radio" name="star"/>
-                <label className="star star-5" htmlFor="star-5"/>
-                <input className="star star-4" id="star-4" type="radio" name="star"/>
-                <label className="star star-4" htmlFor="star-4"/>
-                <input className="star star-3" id="star-3" type="radio" name="star"/>
-                <label className="star star-3" htmlFor="star-3"/>
-                <input className="star star-2" id="star-2" type="radio" name="star"/>
-                <label className="star star-2" htmlFor="star-2"/>
-                <input className="star star-1" id="star-1" type="radio" name="star"/>
-                <label className="star star-1" htmlFor="star-1"/>
-            </div>
-
-            <textarea name=""/>
-
-            <button type="submit">
-                Értékelem
-            </button>
-
-        </form>;
+        return <Rate myRating={this.myRating} targetUserId={this.props.id}/>;
     }
 
     render() {
@@ -125,14 +116,13 @@ export default class User extends React.Component {
                     <h2>{this.isSelf ? 'Rólam írták' : 'Róla írták'}</h2>
 
                     <ul>
-                        <li>
-                            <p>Nagyon király, 10/10</p>
-                            <div className="stars">★★★★★</div>
-                        </li>
-                        <li>
-                            <p>Egész jó!</p>
-                            <div className="stars">★★★★☆</div>
-                        </li>
+                        {this.userRatings.map((rating, index) => <li key={index}>
+                            <div className="stars">
+                                {range(rating.stars).map(num => '★')}
+                                {range(5-rating.stars).map(num => '☆')}
+                            </div>
+                            <p>{rating.body}</p>
+                        </li>)}
                     </ul>
                 </div>
             </div>
