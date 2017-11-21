@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Router, Route, Link} from 'react-router-dom';
 
-import "./index.less";
+import moment from 'moment';
+
+moment.locale('hu');
+
+import {Router, Route, Link} from 'react-router-dom';
 import Home from './pages/app/Home';
 import Login from "./pages/login/Login";
 import User from "./pages/user/User";
@@ -23,6 +26,8 @@ const routingStore = new RouterStore();
 
 const model = new Model(routingStore);
 const history = syncHistoryWithStore(browserHistory, routingStore);
+
+import "./index.less";
 
 ReactDOM.render(
     <Provider model={model}>

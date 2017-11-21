@@ -2,6 +2,7 @@ import React from 'react';
 import {inject, observer} from 'mobx-react';
 import autobind from 'autobind-decorator';
 import "./post_item.less";
+import moment from 'moment';
 
 @inject('model')
 @observer
@@ -56,11 +57,13 @@ export default class PostItem extends React.Component {
     }
 
     render() {
+        const expireDate = moment(this.props.post.expiresAt);
+
         return <div className="post-item">
             <div className="post">
                 <h2><a href="#">{this.props.post.name}</a></h2>
                 <p>{this.props.post.body}</p>
-                <div className="time">Lejárat időpontja: {this.props.post.expiresAt}</div>
+                <div className="time">Lejárat időpontja: {expireDate.format('YYYY. MM. DD. dddd HH:mm')}</div>
                 <div className="owner">
                     Hirdető neve:
                     {' '}
