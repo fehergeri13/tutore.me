@@ -177,7 +177,12 @@ export default class User extends React.Component {
     @autobind async handleModifyPasswordSubmit(e) {
         e.preventDefault();
 
-        await this.props.model.rest.changePassword(this.modifyPassword.password_current, this.modifyPassword.password);
+        try {
+            await this.props.model.rest.changePassword(this.modifyPassword.password_current, this.modifyPassword.password);
+        } catch (e) {
+            alert('Nem sikerült a módosítás');
+            return;
+        }
 
         this.isModifyPassword = false;
     }
@@ -297,7 +302,12 @@ export default class User extends React.Component {
             data.lastName = this.modifyData.lastName;
         }
 
-        await this.props.model.rest.editUser(data);
+        try {
+            await this.props.model.rest.editUser(data);
+        } catch (e) {
+            alert('Nem sikerült a módosítás');
+            return;
+        }
         this.isModifyData = false;
         await this.fetchUser();
     }
