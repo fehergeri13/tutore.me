@@ -12,7 +12,8 @@ div.editor-page {
       grid-template-areas:
               "title title title"
               "text text text"
-              "first second third";
+              "first second third"
+              "errors errors errors";
 
       label.title {
         grid-area: title;
@@ -51,6 +52,25 @@ div.editor-page {
         justify-content: flex-end;
       }
 
+      div.errors {
+        grid-area: errors;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 5px;
+
+        p {
+          color: red;
+          background: rgba(255, 0, 0, 0.05);
+          border: 1px solid rgba(255, 0, 0, 0.15);
+          padding: 5px;
+          margin: 5px 0 0 0;
+          border-radius: 5px;
+        }
+      }
+
       label {
         margin: 8px 8px 0 8px;
       }
@@ -67,6 +87,10 @@ div.editor-page {
       button {
         padding: 8px;
         margin-right: 8px;
+
+        &:disabled {
+          opacity: 0.5;
+        }
       }
 
       textarea {

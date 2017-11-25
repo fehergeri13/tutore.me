@@ -1,5 +1,5 @@
 import React from 'react';
-import {observable, toJS} from 'mobx';
+import {observable, toJS, computed} from 'mobx';
 import {observer, inject} from 'mobx-react';
 import autobind from 'autobind-decorator';
 import "./editor.less";
@@ -36,6 +36,33 @@ export default class Editor extends React.Component {
         type: "",
         subject: [],
     };
+
+    @computed get errors() {
+        const errors = [];
+
+        if(this.postData.type === "") {
+            errors.push("Kérlek válassz ki típust!")
+        }
+
+        if(this.postData.subject.length === 0) {
+            errors.push("Kérlek válassz legalább egy tantárgy kategóriát!")
+        }
+
+
+        if(this.postData.name === "") {
+            errors.push("Kérlek adj címet a hirdetésnek!")
+        }
+
+        else if(this.postData.name.length < 5) {
+            errors.push("Kérlek adj megfelelő címet a hirdetésnek (legalább 5 karakter)!")
+        }
+
+        if(this.postData.body.length < 10) {
+            errors.push("Kérlek írj megfelelő leírást (legalább 10 karakter)!")
+        }
+
+        return errors;
+    }
 
     @autobind
     handleFormChange(e) {
@@ -192,8 +219,10 @@ export default class Editor extends React.Component {
 
             <div className="buttons">
                 <button type="button" onClick={this.handleClearClick}>Törlés</button>
-                <button type="submit">Mentés</button>
+                <button type="submit" disabled={this.errors.length > 0}>Mentés</button>
             </div>
+
+            <div className="errors">{this.errors.map((error, index) => <p key={index}>{error}</p>)}</div>
         </form>;
     }
 
