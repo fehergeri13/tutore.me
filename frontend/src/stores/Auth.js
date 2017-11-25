@@ -47,12 +47,7 @@ export default class Auth {
             alert('Password does not match');
         }
 
-        try {
-            await this.model.rest.register({username, password, email, firstName, lastName});
-            alert('Sikeres regisztráció');
-        } catch(e) {
-            alert(e);
-        }
+        await this.model.rest.register({username, password, email, firstName, lastName});
     }
 
     @action async doLogout() {

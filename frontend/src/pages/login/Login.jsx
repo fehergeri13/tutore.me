@@ -36,8 +36,8 @@ export default class Login extends React.Component {
             return [];
         }
 
-        if(/^[a-zA-Z0-9_.]{5,10}$/.test(this.registerData.username) === false) {
-            errors.push("Nem megfelelő a felhasználónév. Legalább 5 karakter és maximum 10 karakter lehet, csak betűket, számokat, alulvonást és pontot tartalmazhat");
+        if(/^[a-zA-Z0-9_.]{5,20}$/.test(this.registerData.username) === false) {
+            errors.push("Nem megfelelő a felhasználónév. Legalább 5 karakter és maximum 20 karakter lehet, csak betűket, számokat, alulvonást és pontot tartalmazhat");
         }
 
         if(/.{5,}/.test(this.registerData.password) === false) {
@@ -99,13 +99,20 @@ export default class Login extends React.Component {
 
         try {
             await this.props.model.auth.doRegister(toJS(this.registerData));
+
         } catch(e) {
             console.log(e);
 
             if(e.response.status === 403) {
                 alert('Foglalt felhasználónév. Kérlek adj meg másikat!');
+            } else {
+                alert('Hiba a regisztráció során.');
             }
+
+            return;
         }
+
+        alert('Sikeres regisztráció! Most már bejelentkezhetsz');
 
         this.loginData.username = this.registerData.username;
         this.loginData.password = "";
@@ -116,7 +123,6 @@ export default class Login extends React.Component {
         this.registerData.firstName = "";
         this.registerData.lastName = "";
         this.registerData.email = "";
-
     }
 
     render() {
