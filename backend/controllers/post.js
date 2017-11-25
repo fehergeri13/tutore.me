@@ -159,10 +159,9 @@ router.post('/extend', userMiddleware, authMiddleware, (req, res, next) => {
                     res.status(401).end();
                 } else {
                     const currentDate = new Date();
-                    const expirationDate = new Date(post.expiresAt);
                     
-                    expirationDate.setMonth(currentDate.getMonth() + 1);
-                    post.expiresAt = expirationDate;
+                    currentDate.setMonth(currentDate.getMonth() + 1);
+                    post.expiresAt = currentDate;
 
                     post.save((err) => {
                         if (err) {
