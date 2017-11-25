@@ -29,11 +29,13 @@ export default class PostItem extends React.Component {
     @autobind
     async handleDeleteClick() {
         await this.props.model.rest.deletePost(this.props.post.id);
+        this.props.fetch();
     }
 
     @autobind
     async handleRenewClick() {
         await this.props.model.rest.renewPost(this.props.post.id);
+        this.props.fetch();
     }
 
     renderControls() {

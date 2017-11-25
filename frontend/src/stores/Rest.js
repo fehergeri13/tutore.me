@@ -9,7 +9,7 @@ export default class Rest {
         this.model = model;
 
         // redirect to /api
-        axios.interceptors.request.use(function (config) {
+        axios.interceptors.request.use(config => {
             // Do something before request is sent
 
             if(!startsWith(config.url, '/api')) {
@@ -17,8 +17,20 @@ export default class Rest {
             }
 
             return config;
-        }, function (error) {
+        }, error => {
             // Do something with request error
+            return Promise.reject(error);
+        });
+
+
+        axios.interceptors.response.use(response => {
+            // Do something with response data
+            return response;
+        }, error => {
+            if (error.response.status === 401 && error.response.config.url !== '/api/user/logout') {
+                this.model.auth.doLogout();
+            }
+            // Do something with response error
             return Promise.reject(error);
         });
     }

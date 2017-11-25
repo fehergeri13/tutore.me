@@ -12,12 +12,18 @@ import Rate from "../../components/rate/Rate";
 @observer
 export default class User extends React.Component {
 
-    @observable isSelf = false;
     @observable.ref user = undefined;
     @observable.shallow userPosts = [];
     @observable.shallow userRatings = [];
 
 
+    @computed get userId() {
+        return this.props.id !== undefined ? this.props.id : this.props.model.auth.userId;
+    }
+
+    @computed get isSelf() {
+        return this.props.id === undefined || this.props.id === this.props.model.auth.userId;
+    }
 
     async componentDidMount() {
 
@@ -26,20 +32,26 @@ export default class User extends React.Component {
             return;
         }
 
-        this.isSelf = this.props.id === undefined || this.props.id === this.props.model.auth.userId;
+        await this.fetchUser();
+        await this.fetchPosts();
+        await this.fetchRatings();
+    }
 
-        const userId = this.props.id !== undefined ? this.props.id : this.props.model.auth.userId;
-        this.user = await this.props.model.rest.getUser(userId);
-        console.log('this.user', toJS(this.user));
+    @autobind
+    async fetchUser() {
+        this.user = await this.props.model.rest.getUser(this.userId);
+    }
 
+    @autobind
+    async fetchPosts() {
         const response = await this.props.model.rest.getPosts();
-        const filteredPosts = response.posts.filter(post => post.userId === userId);
+        const filteredPosts = response.posts.filter(post => post.userId === this.userId);
         this.userPosts.replace(filteredPosts);
+    }
 
-        console.log('this.userPosts', toJS(this.userPosts));
-
-
-        const ratings = await this.props.model.rest.getRatings(userId);
+    @autobind
+    async fetchRatings() {
+        const ratings = await this.props.model.rest.getRatings(this.userId);
         this.userRatings.replace(ratings);
     }
 
@@ -53,7 +65,15 @@ export default class User extends React.Component {
         }
 
         return <ul>
-            {this.userPosts.map(post => <li key={post.id}><PostItem post={post} isControl={this.isSelf}/></li>)}
+            {this.userPosts.map(post => <li
+                key={post.id}
+            >
+                <PostItem
+                    post={post}
+                    isControl={this.isSelf}
+                    fetch={this.fetchPosts}
+                />
+            </li>)}
         </ul>;
     }
 
