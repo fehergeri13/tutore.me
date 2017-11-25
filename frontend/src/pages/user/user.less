@@ -12,7 +12,7 @@ div.user-page {
     grid-area: profile;
     display: flex;
     flex-direction: column;
-    border-right: 1px solid #000;
+    border-right: 1px solid rgba(0, 0, 0, 0.21);
 
     padding: 10px;
 
@@ -69,9 +69,14 @@ div.user-page {
 
   div.userfeed {
     grid-area: userfeed;
+    padding: 10px;
+
+    h2 {
+      margin: 0 0 10px 0;
+    }
 
     ul li {
-      margin: 10px;
+      margin: 0 0 10px 0;
     }
   }
 }

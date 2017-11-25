@@ -20,8 +20,9 @@ textarea {
 
 button {
   padding: 5px;
-  border: 1px solid #000;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   background: none;
+  border-radius: 3px;
 
   &:hover {
     background: rgba(0, 0, 0, 0.1);
@@ -68,5 +69,9 @@ div.app {
     > * {
       flex-grow: 1;
     }
+  }
+
+  & > div.footer {
+    background: #e3e3e3;
   }
 }

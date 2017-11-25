@@ -117,7 +117,7 @@ export default class User extends React.Component {
             return null;
         }
 
-        return <Rate myRating={this.myRating} targetUserId={this.props.id}/>;
+        return <Rate myRating={this.myRating} targetUserId={this.props.id} fetch={this.fetchRatings}/>;
     }
 
     renderFeedbacks() {

@@ -66,6 +66,8 @@ export default class Rate extends React.Component {
             alert(JSON.stringify(e))
         }
 
+        this.props.fetch();
+
         // this.props.model.routingStore.push('/user');
     }
 
