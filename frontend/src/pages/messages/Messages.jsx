@@ -56,6 +56,10 @@ export default class Messages extends React.Component {
     async handleNewMessageSubmit(e) {
         e.preventDefault();
 
+        if(this.newMessage === "") {
+            return;
+        }
+
         const currentTopic = this.topics[this.selectedTopic];
         const currentUserId = currentTopic.user.userId;
 

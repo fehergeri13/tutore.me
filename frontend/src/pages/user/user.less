@@ -28,6 +28,34 @@ div.user-page {
 
     }
 
+    form {
+      display: flex;
+      flex-direction: column;
+      // align-items: flex-start;
+      padding: 10px;
+
+      & > label {
+        display: flex;
+        flex-direction: row;
+
+        span {
+          margin-right: 10px;
+          flex-grow: 0;
+          flex-shrink: 0;
+        }
+
+        input {
+          flex-grow: 1;
+        }
+
+        margin: 0 0 10px 0;
+      }
+
+      & > button {
+        align-self: flex-start;
+      }
+    }
+
     button.send-message {
       border: none;
       background: none;

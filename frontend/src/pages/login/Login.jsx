@@ -48,8 +48,8 @@ export default class Login extends React.Component {
             errors.push("A két jelszó nem egyezik.");
         }
 
-        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                .test(this.registerData.email) === false) {
+        const emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(emailRegExp.test(this.registerData.email) === false) {
             errors.push("Nem megfelelő az email cím.");
         }
 
@@ -97,7 +97,15 @@ export default class Login extends React.Component {
     async handleRegisterSubmit(e) {
         e.preventDefault();
 
-        await this.props.model.auth.doRegister(toJS(this.registerData));
+        try {
+            await this.props.model.auth.doRegister(toJS(this.registerData));
+        } catch(e) {
+            console.log(e);
+
+            if(e.response.status === 403) {
+                alert('Foglalt felhasználónév. Kérlek adj meg másikat!');
+            }
+        }
 
         this.loginData.username = this.registerData.username;
         this.loginData.password = "";
@@ -135,7 +143,7 @@ export default class Login extends React.Component {
                             value={this.loginData.password}
                         />
                     </label>
-                    <label><span>Emlékezz rám</span><input type="checkbox"/></label>
+                    {/*<label><span>Emlékezz rám</span><input type="checkbox"/></label>*/}
                     <button type="submit">Belépés</button>
                 </form>
             </div>

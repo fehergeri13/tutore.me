@@ -111,6 +111,33 @@ export default class Rest {
         return (await axios.get(`/user/${userId}`)).data;
     }
 
+    /**
+     * POST: /user/edit
+     * request: {
+     *  email: string
+     *  firstName: string
+     *  lastName: string
+     * }
+     *
+     * Updates the non-null user data from the request.
+     */
+    async editUser({email, firstName, lastName}) {
+        await axios.post('/user/edit', {email, firstName, lastName});
+    }
+
+    /**
+     * POST: /user/changePassword
+     * request: {
+     *  currentPassword: string, required
+     *  newPassword: string, required
+     * }
+     *
+     * Changes the current user's password.
+     */
+    async changePassword(currentPassword, newPassword) {
+        await axios.post('/user/changePassword', {currentPassword, newPassword});
+    }
+
 
     /**
      * GET: /post/list
