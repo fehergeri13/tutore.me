@@ -49,7 +49,7 @@ export default class Auth {
 
         try {
             await this.model.rest.register({username, password, email, firstName, lastName});
-            alert('registered');
+            alert('Sikeres regisztráció');
         } catch(e) {
             alert(e);
         }

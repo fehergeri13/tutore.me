@@ -56,7 +56,33 @@ div.login-page {
 
       button {
         align-self: flex-end;
+
+        &:disabled {
+          opacity: 0.5;
+        }
+      }
+
+      div.errors {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+        padding: 5px;
+
+        p {
+          color: red;
+          background: rgba(255, 0, 0, 0.05);
+          border: 1px solid rgba(255, 0, 0, 0.15);
+          padding: 5px;
+          margin: 5px 0 0 0;
+          border-radius: 5px;
+        }
       }
     }
   }
+}
+
+input:-webkit-autofill {
+  background: rgb(250, 255, 189);
+  border: 1px solid rgba(0, 0, 0, 0.38);
 }

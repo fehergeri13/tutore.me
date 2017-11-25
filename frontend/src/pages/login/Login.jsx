@@ -1,7 +1,7 @@
 import React from 'react';
 import {inject, observer} from 'mobx-react';
 import autobind from 'autobind-decorator';
-import {observable, toJS} from 'mobx';
+import {observable, toJS, computed} from 'mobx';
 
 import "./login.less"
 
@@ -23,6 +23,46 @@ export default class Login extends React.Component {
         firstName: "",
         lastName: "",
     };
+
+    @computed get errors() {
+        const errors = [];
+
+        if(this.registerData.username === "" &&
+            this.registerData.password === "" &&
+            this.registerData.password_confirm === "" &&
+            this.registerData.email === "" &&
+            this.registerData.firstName === "" &&
+            this.registerData.lastName === "") {
+            return [];
+        }
+
+        if(/^[a-zA-Z0-9_.]{5,10}$/.test(this.registerData.username) === false) {
+            errors.push("Nem megfelelő a felhasználónév. Legalább 5 karakter és maximum 10 karakter lehet, csak betűket, számokat, alulvonást és pontot tartalmazhat");
+        }
+
+        if(/.{5,}/.test(this.registerData.password) === false) {
+            errors.push("Nem megfelelő a jelszó, legalább 5 karakter legyen.");
+        }
+
+        if(this.registerData.password !== this.registerData.password_confirm) {
+            errors.push("A két jelszó nem egyezik.");
+        }
+
+        if(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                .test(this.registerData.email) === false) {
+            errors.push("Nem megfelelő az email cím.");
+        }
+
+        if(this.registerData.firstName.length < 2) {
+            errors.push("A vezetékneved legalább 2 karakter legyen");
+        }
+
+        if(this.registerData.lastName.length < 2) {
+            errors.push("A keresztneved legalább 2 karakter legyen");
+        }
+
+        return errors;
+    }
 
     @autobind
     handleLoginChange(e) {
@@ -54,10 +94,21 @@ export default class Login extends React.Component {
     }
 
     @autobind
-    handleRegisterSubmit(e) {
+    async handleRegisterSubmit(e) {
         e.preventDefault();
 
-        this.props.model.auth.doRegister(toJS(this.registerData));
+        await this.props.model.auth.doRegister(toJS(this.registerData));
+
+        this.loginData.username = this.registerData.username;
+        this.loginData.password = "";
+
+        this.registerData.username = "";
+        this.registerData.password = "";
+        this.registerData.password_confirm = "";
+        this.registerData.firstName = "";
+        this.registerData.lastName = "";
+        this.registerData.email = "";
+
     }
 
     render() {
@@ -147,7 +198,9 @@ export default class Login extends React.Component {
                             value={this.registerData.lastName}
                         />
                     </label>
-                    <button type="submit">Regisztrálás</button>
+                    <button type="submit" disabled={this.errors.length > 0}>Regisztrálás</button>
+
+                    <div className="errors">{this.errors.map((error, index) => <p key={index}>{error}</p>)}</div>
                 </form>
             </div>
         </div>;
