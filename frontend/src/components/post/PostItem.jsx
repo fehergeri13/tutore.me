@@ -67,7 +67,7 @@ export default class PostItem extends React.Component {
 
         return <div className="post-item">
             <div className="post">
-                <h2><a href="#">{this.props.post.name}</a></h2>
+                <h2>{this.props.post.name}</h2>
                 <p>{this.props.post.body}</p>
                 <div className="time">Lejárat időpontja: {expireDate.format('YYYY. MM. DD. dddd HH:mm')}</div>
                 {this.renderOwner()}
