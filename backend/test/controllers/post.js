@@ -665,7 +665,7 @@ describe('Post handling controller', () => {
         describe('Unauthorized access', () => {
             it('should return 401', done => {
                 chai.request(server)
-                    .delete('/post/extend')
+                    .post('/post/extend')
                     .end((err, res) => {
                         should.exist(err);
                         res.status.should.equal(401);

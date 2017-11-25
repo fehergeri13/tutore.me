@@ -168,7 +168,7 @@ router.post('/register', (req, res, next) => {
     } else {
         const existingUser = User.findOne({ username: req.body.username }, (err, user) => {
             if (user || err) {
-                res.status(400).end();
+                res.status(403).end();
             } else {
                 argon.hash(req.body.password).then(passwordHash => {
                     const newUser = new User({

@@ -223,7 +223,7 @@ describe('User handling controller', () => {
         });
 
         describe('Existing username', () => {
-            it ('should return 400 and no new entry should be created', done => {
+            it ('should return 403 and no new entry should be created', done => {
                 chai.request(server)
                     .post('/user/register')
                     .send({
@@ -233,7 +233,7 @@ describe('User handling controller', () => {
                     })
                     .end((err, res) => {
                         should.exist(err);
-                        res.status.should.equal(400);
+                        res.status.should.equal(403);
 
                         User.find({}, (err, users) => {
                             users.length.should.equal(3);
