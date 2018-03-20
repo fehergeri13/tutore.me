@@ -11,9 +11,9 @@ import Recaptcha from "react-recaptcha";
 @observer
 export default class CreatorPage extends React.Component {
 
-    @observable title = "Ez az első korrepetálás hirdetés";
-    @observable body = "Korrepetálást tartok egyetemistáknak, akik érdekeltek programozásban";
-    @observable email = "fehergeri13@gmail.com";
+    @observable title = "";
+    @observable body = "";
+    @observable email = "";
     @observable reCaptchaResponse = undefined;
 
     @observable isValidate = false;
