@@ -1,0 +1,81 @@
+#feladas {
+
+  padding: 10px;
+
+  #g-recaptcha {
+    margin-left: 115px;
+  }
+
+  form {
+
+    label {
+      display: flex;
+      flex-direction: row;
+      padding: 5px;
+
+      span {
+        width: 100px;
+        display: inline-block;
+        text-align: right;
+        padding: 5px;
+      }
+    }
+
+    label.title input {
+      font-size: 16px;
+    }
+
+    label.body textarea {
+      min-height: 100px;
+    }
+
+
+
+
+    input, textarea {
+      width: 600px;
+      border: 2px dashed rgba(0, 0, 0, 0.50);
+      resize: vertical;
+      padding: 5px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.5);
+
+      &:hover {
+        border: 2px dashed rgba(0, 0, 0, 0.70);
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      &:focus {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px dashed rgba(0, 0, 0, 1);
+      }
+    }
+
+    ul.errors {
+      color: red;
+      font-weight: bold;
+
+      margin: 20px 0 20px 115px;
+    }
+
+    button {
+      padding: 5px;
+      border: 2px dashed rgba(0, 0, 0, 0.50);
+      width: 100px;
+      margin-left: 116px;
+      margin-top: 10px;
+      background: #F9A825;
+      outline: none;
+
+      &:hover {
+        border: 2px dashed rgba(0, 0, 0, 0.70);
+        background: #F57F17;
+      }
+
+      &:active {
+        background: #E65100;
+      }
+    }
+  }
+}
+
